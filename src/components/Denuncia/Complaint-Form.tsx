@@ -1,93 +1,99 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { TextInput, Button, Title, Paragraph, Card, useTheme } from 'react-native-paper';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-
-const DenunciaForm: React.FC = () => {
-  const [tipoDenuncia, setTipoDenuncia] = useState<string>('asalto');
-  const [informacionAdicional, setInformacionAdicional] = useState<string>('');
-  const theme = useTheme();
+const ComplaintForm = () => {
+  const [tipoRobo, setTipoRobo] = useState('');
+  const [detalles, setDetalles] = useState('');
+  const [ubicacion, setUbicacion] = useState('');
 
   const handleSubmit = () => {
-    console.log(`Tipo de denuncia: ${tipoDenuncia}`);
-    console.log(`Información adicional: ${informacionAdicional}`);
-    setTipoDenuncia('asalto');
-    setInformacionAdicional('');
+    console.log({ tipoRobo, detalles, ubicacion });
   };
 
   return (
-    <View style={styles.container}>
-      <Card style={styles.card}>
-        <Card.Content>
-          <Title style={styles.title}>Realizar Denuncia</Title>
-          <Paragraph>Seleccione el tipo de denuncia:</Paragraph>
-          <View style={styles.pickerContainer}>
-            <Picker
-              selectedValue={tipoDenuncia}
-              style={styles.picker}
-              onValueChange={(value) => setTipoDenuncia(value)}
-            >
-              <Picker.Item label="Asalto" value="asalto" />
-              <Picker.Item label="Denuncia de domicilio" value="denunciaDomicilio" />
-              <Picker.Item label="Choque" value="choque" />
-              <Picker.Item label="Otro" value="otro" />
-            </Picker>
-          </View>
-          <TextInput
-            label="Información adicional"
-            value={informacionAdicional}
-            onChangeText={setInformacionAdicional}
-            multiline
-            numberOfLines={4}
-            mode="outlined"
-            style={styles.input}
-          />
-          <Button 
-            mode="contained" 
-            onPress={handleSubmit}
-            style={styles.button}
-            labelStyle={styles.buttonText}
-          >
-            Enviar
-          </Button>
-        </Card.Content>
-      </Card>
+    <View style={styles.form}>
+      <Text style={styles.title}>Formulario de Denuncia</Text>
+      
+      <View>
+        <Text style={styles.label}>Tipo de Robo:</Text>
+        <Picker
+          selectedValue={tipoRobo}
+          onValueChange={(itemValue) => setTipoRobo(itemValue)}
+          style={styles.input}
+        >
+          <Picker.Item label="Seleccione un tipo" value="" />
+          <Picker.Item label="Robo de celular" value="celular" />
+          <Picker.Item label="Robo de vehículo" value="vehiculo" />
+          {/* Agrega más opciones según sea necesario */}
+        </Picker>
+      </View>
+
+      <View>
+        <Text style={styles.label}>Detalles:</Text>
+        <TextInput
+          value={detalles}
+          onChangeText={setDetalles}
+          multiline
+          style={[styles.input, styles.textarea]}
+        />
+      </View>
+
+      <View>
+        <Text style={styles.label}>Ubicación:</Text>
+        <TextInput
+          value={ubicacion}
+          onChangeText={setUbicacion}
+          style={styles.input}
+        />
+      </View>
+
+      <TouchableOpacity onPress={handleSubmit} style={styles.button}>
+        <Text style={styles.buttonText}>Enviar Denuncia</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: '#f0f0f0',
-  },
-  card: {
-    elevation: 4,
+  form: {
+    maxWidth: 500,
+    margin: 20,
+    padding: 20,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 8,
   },
   title: {
     textAlign: 'center',
-    marginBottom: 16,
+    marginBottom: 20,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
-  pickerContainer: {
+  input: {
+    width: '100%',
+    padding: 8,
+    marginBottom: 15,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 4,
-    marginBottom: 16,
   },
-  picker: {
-    height: 50,
+  textarea: {
+    height: 100,
   },
-  input: {
-    marginBottom: 16,
+  label: {
+    marginBottom: 5,
+    fontWeight: 'bold',
   },
   button: {
-    marginTop: 16,
+    backgroundColor: '#007bff',
+    padding: 10,
+    borderRadius: 4,
+    alignItems: 'center',
   },
   buttonText: {
-    fontSize: 16,
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
 
-export default DenunciaForm;
+export default ComplaintForm;

@@ -3,16 +3,18 @@ import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native
 import { Ionicons } from '@expo/vector-icons';
 import News from './Novedades/News';
 import DenunciaForm from './Denuncia/Complaint-Form';
+import EmergencyNumbers from '../components/Llamadas';
+import AppGuide from './Ayuda';
 
 const Menu = () => {
   const [menuAbierto, setMenuAbierto] = useState(false);
-  const [componenteSeleccionado, setComponenteSeleccionado] = useState<'noticias' | 'Denuncia' | 'configuracion' | null>(null);
+  const [componenteSeleccionado, setComponenteSeleccionado] = useState<'noticias' | 'Denuncia' | 'Lineas de ayuda' | 'Ayuda' | null>(null);
 
   const toggleMenu = () => {
     setMenuAbierto(!menuAbierto);
   };
 
-  const seleccionarComponente = (componente: 'noticias' | 'Denuncia' | 'configuracion') => {
+  const seleccionarComponente = (componente: 'noticias' | 'Denuncia' | 'Lineas de ayuda' | 'Ayuda') => {
     setComponenteSeleccionado(componente);
     setMenuAbierto(false);
     Animated.timing(fadeAnim, {
@@ -38,16 +40,20 @@ const Menu = () => {
           <TouchableOpacity onPress={() => seleccionarComponente('Denuncia')}>
             <Text style={styles.opcionMenu}>Denuncia</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => seleccionarComponente('configuracion')}>
-            <Text style={styles.opcionMenu}>Configuración</Text>
+          <TouchableOpacity onPress={() => seleccionarComponente('Lineas de ayuda')}>
+            <Text style={styles.opcionMenu}>Lineas de ayuda</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => seleccionarComponente('Ayuda')}>
+            <Text style={styles.opcionMenu}>Guia</Text>
           </TouchableOpacity>
         </View>
       )}
 
       <Animated.View style={[styles.contenidoPrincipal, { opacity: fadeAnim }]}>
         {componenteSeleccionado === 'noticias' && <News />}
-        {componenteSeleccionado === 'Denuncia' && <DenunciaForm></DenunciaForm>}
-        {componenteSeleccionado === 'configuracion' && <Text>Componente de Configuración</Text>}
+        {componenteSeleccionado === 'Denuncia' && <DenunciaForm />}
+        {componenteSeleccionado === 'Lineas de ayuda' && <EmergencyNumbers />}
+        {componenteSeleccionado === 'Ayuda' && <AppGuide />}
       </Animated.View>
     </View>
   );

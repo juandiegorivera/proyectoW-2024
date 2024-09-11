@@ -19,3 +19,14 @@ export const Novedades = [
     },
   ] as const;
 
+  export const numbers = [
+    { number: "107", description: "Emergencias médicas." },
+    { number: "100", description: "Bomberos." },
+    { number: "103", description: "Defensa civil." },
+    { number: "105", description: "Emergencia ambiental." },
+    { number: "106", description: "Emergencia náutica." },
+    { number: "135", description: "Asistencia al suicida." },
+    { number: "142", description: "Chicos y chicas extraviados." },
+  ] as const;
+
+
