@@ -62,4 +62,28 @@ export const Mapa = () => {
 
 
 
+/*
+import React, { ReactNode } from 'react';
+import { APIProvider, Map } from "@vis.gl/react-google-maps";
 
+interface MapaProps {
+  children: ReactNode;
+}
+
+export const Mapa: React.FC<MapaProps> = ({ children }) => {
+  return (
+    <APIProvider apiKey="TU_CLAVE_DE_API_AQUI">
+      <div style={{ width: '100%', height: '100vh' }}>
+        <Map
+          zoom={10}
+          center={{ lat: 28, lng: -82 }}
+          gestureHandling={'greedy'}
+          disableDefaultUI={true}
+        >
+          {children}
+        </Map>
+      </div>
+    </APIProvider>
+  );
+};
+*/
