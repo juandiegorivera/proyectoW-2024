@@ -1,23 +1,18 @@
 // App.tsx
 import React from 'react';
 import Menu from './src/components/Menu';
-import {MapaProps} from './src/components/Mapa/mapa'; // Asegúrate de importar los tipos necesarios
+import Mapeishon from './src/components/Mapa/mapa'; 
+
+// Editar el componente Mapa para aceptar children
+const Mapa: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return <div>{children}</div>;
+};
 
 export default function App() {
   return (
-    <Mapa>   
+    <Mapeishon>
       <Menu />
-    </Mapa>
+    </Mapeishon>
   );
-}
-
-// ... en el componente Mapa, asegúrate de definir los props correctamente
-// {{ edit_1 }}
-type MapaProps = {
-  children: React.ReactNode; // Asegúrate de que Mapa acepte children
-};
-
-const Mapa: React.FC<MapaProps> = ({ children }) => {
-  return <div>{children}</div>; // Renderiza los children
-};
+}               
 
