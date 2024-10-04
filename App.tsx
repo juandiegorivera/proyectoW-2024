@@ -5,6 +5,7 @@ import DenunciaForm from './src/components/Denuncia/Complaint-Form';
 import CrimenAdd from './src/components/Denuncia/Add-Complaint';
 import CrimenList from './src/components/Denuncia/Edit-Complaint';
 import {Mapa} from './src/components/Mapa/mapa';
+import { View } from 'react-native';
 
 export default function App() {
   return (
@@ -14,4 +15,3 @@ export default function App() {
   );
 }
 
--
