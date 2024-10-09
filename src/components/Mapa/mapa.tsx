@@ -8,7 +8,12 @@ import {
   Pin,             // Pin es un componente visual que se utiliza dentro del marcador.
   InfoWindow,      // Ventana de información que aparece cuando se interactúa con el marcador.
 } from "@vis.gl/react-google-maps";
-export const Mapa = () => {
+
+interface MapaProps {
+  children: React.ReactNode; // Añadido para aceptar children
+}
+
+export const Mapeishon: React.FC<MapaProps> = ({ children }) => {
   // Definimos la posición geográfica (latitud y longitud) para centrar el Mapa en Neuquén.
   const position = { lat: -38.950557 , lng: -68.059219 };
 
@@ -48,6 +53,7 @@ export const Mapa = () => {
               <p>I'm in Neuquén -saquenme de acá-</p> {/* Mensaje mostrado en la ventana */}
             </InfoWindow>
           )}
+          {children} {/* Renderiza los children dentro del contenedor del mapa */}
         </Map>
         
         {/* Controles de Zoom */}
@@ -60,6 +66,30 @@ export const Mapa = () => {
   );
 };
 
+export default Mapeishon;
 
+/*
+import React, { ReactNode } from 'react';
+import { APIProvider, Map } from "@vis.gl/react-google-maps";
 
+interface MapaProps {
+  children: ReactNode;
+}
 
+export const Mapa: React.FC<MapaProps> = ({ children }) => {
+  return (
+    <APIProvider apiKey="TU_CLAVE_DE_API_AQUI">
+      <div style={{ width: '100%', height: '100vh' }}>
+        <Map
+          zoom={10}
+          center={{ lat: 28, lng: -82 }}
+          gestureHandling={'greedy'}
+          disableDefaultUI={true}
+        >
+          {children}
+        </Map>
+      </div>
+    </APIProvider>
+  );
+};
+*/

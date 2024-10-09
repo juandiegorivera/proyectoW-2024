@@ -1,8 +1,13 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faHome, faHeart, faPhone, faMobileRetro, faBullhorn, faNewspaper, faQuestion, faMap } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faHome, faBullhorn, faNewspaper, faQuestion, faMap, faMobileRetro } from '@fortawesome/free-solid-svg-icons';
 
-const Icon = ({ type }) => {
+// Definición de tipos para las propiedades del componente
+interface IconProps {
+  type: 'phone' | 'bullhorn' | 'newspaper' | 'question' | 'user' | 'map';
+}
+
+const Icon: React.FC<IconProps> = ({ type }) => {
   let icon;
 
   // Selección del ícono basado en la propiedad `type`
@@ -37,7 +42,6 @@ const Icon = ({ type }) => {
 };
 
 export default Icon;
-
 
 /*
     <MiComponente>
