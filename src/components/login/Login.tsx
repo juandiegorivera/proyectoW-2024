@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const GoogleLogin: React.FC = () => {
+const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -108,7 +108,7 @@ const GoogleLogin: React.FC = () => {
   );
 };
 
-export default GoogleLogin;
+export default Login;
 
 
 
