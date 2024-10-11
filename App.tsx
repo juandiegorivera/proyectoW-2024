@@ -1,9 +1,9 @@
 // App.tsx
 import React from 'react';
 import Menu from './src/components/Menu';
-import DenunciaForm from './src/components/Denuncia/Complaint-Form';
-import CrimenAdd from './src/components/Denuncia/Add-Complaint';
-import CrimenList from './src/components/Denuncia/Edit-Complaint';
+import DenunciaForm from './src/components/Denuncia/CrimeForm';
+import CrimenAdd from './src/components/Denuncia/CrimeAdd';
+import CrimenList from './src/components/Denuncia/CrimeList';
 import {Mapa} from './src/components/Mapa/mapa';
 import { View } from 'react-native';
 import Mapeishon from './src/components/Mapa/mapa'; 
