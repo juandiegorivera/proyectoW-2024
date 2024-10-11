@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import News from './Novedades/News';
-import DenunciaForm from './Denuncia/Complaint-Form';
+import DenunciaForm from './Denuncia/CrimeForm';
 import EmergencyNumbers from '../components/Llamadas';
 import AppGuide from './Ayuda';
 
