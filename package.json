@@ -17,11 +17,7 @@
     "@headlessui/react": "^2.1.5",
     "@heroicons/react": "^2.1.5",
     "@react-native-picker/picker": "^2.8.0",
-<<<<<<< HEAD
     "@vis.gl/react-google-maps": "^1.2.0",
-=======
-    "@vis.gl/react-google-maps": "^1.1.3",
->>>>>>> 749ed5a2dcad52325dcae351a77a296b828952ab
     "bootstrap": "^5.3.3",
     "expo": "~51.0.24",
     "expo-status-bar": "~1.12.1",

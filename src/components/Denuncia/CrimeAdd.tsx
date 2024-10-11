@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
-import { db } from './firebaseConfig'; // Ajusta la ruta según tu estructura
+import { db } from './FirebaseConfig'; // Ajusta la ruta según tu estructura
 import { collection, addDoc } from 'firebase/firestore';
+
+interface CrimenAddProps {
+  onAdd: () => void; // Define el tipo de la función onAdd
+}
 
 const CrimenAdd: React.FC<CrimenAddProps> = ({ onAdd }) => {
   const [tipo, setTipo] = useState<string>('');
@@ -12,7 +16,7 @@ const CrimenAdd: React.FC<CrimenAddProps> = ({ onAdd }) => {
     const nuevoCrimen = { tipo, ubicacion, detalles };
     try {
       await addDoc(collection(db, 'crimenes'), nuevoCrimen); // Cambia 'crimenes' a tu colección
-      onAdd(nuevoCrimen); // También llama a onAdd si es necesario
+      onAdd(); // También llama a onAdd si es necesario
       setTipo('');
       setUbicacion('');
       setDetalles('');
@@ -22,7 +26,6 @@ const CrimenAdd: React.FC<CrimenAddProps> = ({ onAdd }) => {
   };
 
   return (
-    return (
       <form onSubmit={handleSubmit}>
         <div>
           <label>Tipo de crimen:</label>
@@ -60,8 +63,6 @@ const CrimenAdd: React.FC<CrimenAddProps> = ({ onAdd }) => {
         </div>
         <button type="submit">Denunciar Crimen</button>
       </form>
-    );
-    
   );
 };
 

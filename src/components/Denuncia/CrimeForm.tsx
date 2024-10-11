@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { db } from './firebaseConfig'; // Ajusta la ruta según tu estructura
+import { db } from './FirebaseConfig'; // Cambié la ruta a Firebase
 import { collection, addDoc } from 'firebase/firestore';
 
 const ComplaintForm: React.FC = () => {
@@ -66,6 +66,46 @@ const ComplaintForm: React.FC = () => {
   );
 };
 
-// styles remain the same...
+const styles = StyleSheet.create({
+  form: {
+    // estilos para el formulario
+    padding: 20,
+  },
+  title: {
+    // estilos para el título
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  label: {
+    // estilos para las etiquetas
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  input: {
+    // estilos para los inputs
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 15,
+  },
+  textarea: {
+    // estilos específicos para el área de texto
+    height: 100,
+  },
+  button: {
+    // estilos para el botón
+    backgroundColor: '#007BFF',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  buttonText: {
+    // estilos para el texto del botón
+    color: '#fff',
+    fontSize: 16,
+  },
+});
 
 export default ComplaintForm;
