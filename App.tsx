@@ -5,6 +5,8 @@ import Mapeishon from './src/components/Mapa/mapa';
 import ComplaintForm from './src/components/Denuncia/CrimeForm';
 import CrimenList from './src/components/Denuncia/CrimeList';
 import CrimenAdd from './src/components/Denuncia/CrimeAdd';
+import Login from './src/components/TodoLogin/Login';
+import RegisterForm from './src/components/Register/registro';
 
 
 // Editar el componente Mapa para aceptar children

@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { CSSProperties } from 'react';
 
+// Interfaz que define la estructura de los datos del formulario de registro
 interface RegisterFormData {
-  username: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
+  username: string; // Nombre de usuario
+  email: string;    // Correo electrónico
+  password: string; // Contraseña
+  confirmPassword: string; // Confirmación de la contraseña
 }
 
+// Componente funcional para el formulario de registro
 const RegisterForm: React.FC = () => {
+  // Estado para almacenar los datos del formulario
   const [formData, setFormData] = useState<RegisterFormData>({
     username: '',
     email: '',
@@ -16,44 +19,52 @@ const RegisterForm: React.FC = () => {
     confirmPassword: '',
   });
 
+  // Estado para almacenar los errores de validación
   const [errors, setErrors] = useState<string[]>([]);
 
+  // Maneja los cambios en los campos de entrada del formulario
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
+      ...formData, // Mantiene los datos existentes
+      [e.target.name]: e.target.value, // Actualiza el campo correspondiente
     });
   };
 
+  // Maneja el envío del formulario
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const validationErrors = validateForm(formData);
+    e.preventDefault(); // Previene el comportamiento por defecto del formulario
+    const validationErrors = validateForm(formData); // Valida los datos del formulario
     if (validationErrors.length === 0) {
-      console.log('Formulario enviado exitosamente:', formData);
-      // Aquí puedes agregar la lógica para enviar el formulario
+      console.log('Registrando usuario:', formData); // Muestra los datos en la consola
+      // Lógica para añadir un nuevo usuario (enviar a API o backend)
+      // Aquí agregarías tu lógica para conectar con la base de datos o backend
     } else {
-      setErrors(validationErrors);
+      setErrors(validationErrors); // Establece los errores de validación en el estado
     }
   };
 
+  // Función para validar los datos del formulario
   const validateForm = (data: RegisterFormData): string[] => {
-    const errors = [];
+    const errors = []; // Array para almacenar los errores
     if (data.password !== data.confirmPassword) {
-      errors.push('Contraseña incorrecta');
+      errors.push('Las contraseñas no coinciden.'); // Error si las contraseñas no coinciden
     }
     if (!data.email.includes('@')) {
-      errors.push('Correo inválido');
+      errors.push('Por favor, ingrese un correo válido.'); // Error si el correo no es válido
+    }
+    if (data.password.length < 6) {
+      errors.push('La contraseña debe tener al menos 6 caracteres.'); // Error si la contraseña es corta
     }
     if (data.username.length < 3) {
-      errors.push('El nombre de usuario debe tener por lo menos 3 caracteres');
+      errors.push('El nombre de usuario debe tener al menos 3 caracteres.'); // Error si el nombre de usuario es corto
     }
-    return errors;
+    return errors; // Devuelve el array de errores
   };
 
   return (
     <div style={styles.container}>
       <div style={styles.formContainer}>
-        <h2 style={styles.title}>Registrate</h2>
+        <h2 style={styles.title}>Regístrate</h2>
         <form onSubmit={handleSubmit}>
           <div style={styles.inputGroup}>
             <label htmlFor="username">Nombre de Usuario:</label>
@@ -68,7 +79,7 @@ const RegisterForm: React.FC = () => {
             />
           </div>
           <div style={styles.inputGroup}>
-            <label htmlFor="email">Gmail:</label>
+            <label htmlFor="email">Correo Electrónico:</label>
             <input
               type="email"
               id="email"
@@ -124,6 +135,7 @@ const RegisterForm: React.FC = () => {
 };
 
 // Definición de estilos con tipado adecuado para CSSProperties
+
 const styles: { [key: string]: CSSProperties } = {
   container: {
     display: 'flex',
