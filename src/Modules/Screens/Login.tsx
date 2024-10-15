@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     console.log('Iniciar sesión con Google');
@@ -100,9 +102,9 @@ const Login: React.FC = () => {
       <p>¿No tienes una cuenta?</p>
       <button
         style={{ ...styles.button, ...styles.signupButton }}
-        onClick={handleSignUp}
+        onClick={() => navigate('/register')}
       >
-        Regístrate aquí
+        Registrarse
       </button>
     </div>
   );

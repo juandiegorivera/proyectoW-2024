@@ -2,13 +2,25 @@ import React, { useState, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import News from './Novedades/News';
-import DenunciaForm from './Denuncia/CrimeForm';
-import EmergencyNumbers from '../components/Llamadas';
+import ComplaintForm from 'src/Modules/Denuncia/components/CrimeForm';
+import EmergencyNumbers from './Llamadas';
 import AppGuide from './Ayuda';
+import useCrimen from 'src/Modules/Denuncia/hooks/hookcrimen';
 
 const Menu = () => {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [componenteSeleccionado, setComponenteSeleccionado] = useState<'noticias' | 'Denuncia' | 'Lineas de ayuda' | 'Ayuda' | null>(null);
+
+  // Utilizamos el hook useCrimen para manejar los estados y funciones del formulario
+  const {
+    tipoDeRobo,
+    setTipoDeRobo,
+    detalles,
+    setDetalles,
+    ubicacion,
+    setUbicacion,
+    handleSubmit,
+  } = useCrimen();
 
   const toggleMenu = () => {
     setMenuAbierto(!menuAbierto);
@@ -51,7 +63,17 @@ const Menu = () => {
 
       <Animated.View style={[styles.contenidoPrincipal, { opacity: fadeAnim }]}>
         {componenteSeleccionado === 'noticias' && <News />}
-        {componenteSeleccionado === 'Denuncia' && <DenunciaForm />}
+        {componenteSeleccionado === 'Denuncia' && (
+          <ComplaintForm
+            tipoDeRobo={tipoDeRobo}
+            setTipoDeRobo={setTipoDeRobo}
+            detalles={detalles}
+            setDetalles={setDetalles}
+            ubicacion={ubicacion}
+            setUbicacion={setUbicacion}
+            handleSubmit={handleSubmit}
+          />
+        )}
         {componenteSeleccionado === 'Lineas de ayuda' && <EmergencyNumbers />}
         {componenteSeleccionado === 'Ayuda' && <AppGuide />}
       </Animated.View>
@@ -62,7 +84,7 @@ const Menu = () => {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: '#1A1A2E',
+    backgroundColor: 'red',
   },
   botonHamburguesa: {
     position: 'absolute',
