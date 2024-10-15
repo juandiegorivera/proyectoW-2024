@@ -24,6 +24,10 @@ const Login: React.FC = () => {
     }
   };
 
+  const handleBack = () => {
+    navigate('/'); // Redirige a la página de inicio
+  };
+
   // Estilos en línea
   const styles = {
     container: {
@@ -105,6 +109,9 @@ const Login: React.FC = () => {
         onClick={() => navigate('/register')}
       >
         Registrarse
+      </button>
+      <button type="button" onClick={handleBack} style={styles.button}>
+        Volver
       </button>
     </div>
   );

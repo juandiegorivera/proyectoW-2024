@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CSSProperties } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Interfaz que define la estructura de los datos del formulario de registro
 interface RegisterFormData {
@@ -59,6 +60,12 @@ const RegisterForm: React.FC = () => {
       errors.push('El nombre de usuario debe tener al menos 3 caracteres.'); // Error si el nombre de usuario es corto
     }
     return errors; // Devuelve el array de errores
+  };
+
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate('/'); // Redirige a la página de inicio
   };
 
   return (
@@ -125,8 +132,11 @@ const RegisterForm: React.FC = () => {
               </ul>
             </div>
           )}
-          <button type="submit" style={styles.button}>
+          <button type="submit" style={styles.buttonSubmit}>
             Registrarse
+          </button>
+          <button type="button" onClick={handleBack} style={styles.buttonBack}>
+            Volver
           </button>
         </form>
       </div>
@@ -184,6 +194,26 @@ const styles: { [key: string]: CSSProperties } = {
   errorText: {
     color: 'red',
     fontSize: '14px',
+  },
+  buttonSubmit: {
+    width: '100%',
+    padding: '10px',
+    backgroundColor: '#EF007E',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    fontSize: '16px',
+  },
+  buttonBack: {
+    width: '100%',
+    padding: '10px',
+    backgroundColor: '#ccc', // Cambia el color si es necesario
+    color: '#000', // Cambia el color si es necesario
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    fontSize: '16px',
   },
 };
 
