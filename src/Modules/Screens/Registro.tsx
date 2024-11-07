@@ -37,8 +37,7 @@ const RegisterForm: React.FC = () => {
     const validationErrors = validateForm(formData); // Valida los datos del formulario
     if (validationErrors.length === 0) {
       console.log('Registrando usuario:', formData); // Muestra los datos en la consola
-      // Lógica para añadir un nuevo usuario (enviar a API o backend)
-      // Aquí agregarías tu lógica para conectar con la base de datos o backend
+      navigate('/'); // Redirige al menú desplegable
     } else {
       setErrors(validationErrors); // Establece los errores de validación en el estado
     }
@@ -152,28 +151,31 @@ const styles: { [key: string]: CSSProperties } = {
     justifyContent: 'center',
     alignItems: 'center',
     minHeight: '100vh',
-    backgroundColor: '#ffcaaf',
-    padding: '20px', // Para evitar que quede pegado a los bordes en pantallas pequeñas
-    width: '100vw',  // Asegura que el contenedor tome todo el ancho
+    backgroundColor: '#FFFFFF',
+    padding: '20px',
+    width: '100vw',
   },
   formContainer: {
-    backgroundColor: '#cca9dd',
+    backgroundColor: '#CAE9FF',
     padding: '20px',
-    borderRadius: '8px',
+    borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     maxWidth: '400px',
     width: '100%',
   },
   title: {
-    textAlign: 'center',
+    textAlign: 'center' as React.CSSProperties['textAlign'],
     marginBottom: '20px',
+    color: '#1B4965',
+    fontSize: '24px',
+    fontWeight: '600',
   },
   inputGroup: {
     marginBottom: '15px',
   },
   input: {
-    width: '50%',
-    padding: '10px',
+    width: '96%', // Reduce el ancho de los campos de entrada al 80% del contenedor
+    padding: '8px', // Ajusta el padding para mantener proporción
     borderRadius: '4px',
     border: '1px solid #ccc',
     fontSize: '16px',
@@ -181,10 +183,10 @@ const styles: { [key: string]: CSSProperties } = {
   button: {
     width: '100%',
     padding: '10px',
-    backgroundColor: '#EF007E',
-    color: '#fff',
+    backgroundColor: '#1B4965',
+    color: '#FFFFFF',
     border: 'none',
-    borderRadius: '4px',
+    borderRadius: '5px',
     cursor: 'pointer',
     fontSize: '16px',
   },
@@ -198,23 +200,27 @@ const styles: { [key: string]: CSSProperties } = {
   buttonSubmit: {
     width: '100%',
     padding: '10px',
-    backgroundColor: '#EF007E',
-    color: '#fff',
+    backgroundColor: '#99D500',
+    color: '#FFFFFF',
     border: 'none',
-    borderRadius: '4px',
+    borderRadius: '5px',
     cursor: 'pointer',
     fontSize: '16px',
+    marginBottom: '10px',
   },
   buttonBack: {
     width: '100%',
     padding: '10px',
-    backgroundColor: '#ccc', // Cambia el color si es necesario
-    color: '#000', // Cambia el color si es necesario
+    backgroundColor: '#62B6CB',
+    color: '#FFFFFF',
     border: 'none',
-    borderRadius: '4px',
+    borderRadius: '5px',
     cursor: 'pointer',
     fontSize: '16px',
+    marginTop: '10px',
   },
 };
+
+
 
 export default RegisterForm;

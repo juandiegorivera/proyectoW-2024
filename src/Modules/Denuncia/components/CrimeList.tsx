@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-
+// aca va el leer de crud
 interface Crimen {
   tipoDeRobo: string;
   detalles: string;
   ubicacion: string;
 }
 
+// Esta interfaz define las propiedades que se esperan en el componente CrimenList
 interface CrimenListProps {
+  // 'crimen' es un arreglo de objetos de tipo Crimen
   crimen: Crimen[];
+  // 'onEdit' es una función que se llama para editar un crimen, recibe el índice y el crimen actualizado
   onEdit: (index: number, updatedCrimen: Crimen) => void;
+  // 'onDelete' es una función que se llama para eliminar un crimen, recibe el índice del crimen a eliminar
   onDelete: (index: number) => void;
 }
 

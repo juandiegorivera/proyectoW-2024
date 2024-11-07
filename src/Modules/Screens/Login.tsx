@@ -9,6 +9,7 @@ const Login: React.FC = () => {
 
   const handleLogin = () => {
     console.log('Iniciar sesión con Google');
+    navigate('/'); // Redirige al menú desplegable
   };
 
   const handleSignUp = () => {
@@ -21,6 +22,7 @@ const Login: React.FC = () => {
       setError('Por favor, complete todos los campos.');
     } else {
       console.log('Iniciando sesión con nombre de usuario:', username);
+      navigate('/'); // Redirige al menú desplegable
     }
   };
 
@@ -28,55 +30,65 @@ const Login: React.FC = () => {
     navigate('/'); // Redirige a la página de inicio
   };
 
-  // Estilos en línea
-  const styles = {
-    container: {
-      display: 'flex' as const,
-      flexDirection: 'column' as const,
-      alignItems: 'center' as const,
-      justifyContent: 'center' as const,
-      margin: '20px',
-      padding: '20px',
-      border: '1px solid #ddd',
-      borderRadius: '10px',
-      backgroundColor: '#cca9dd',
-      maxWidth: '400px',
-      height: 'auto',
-      position: 'absolute' as const,
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-    },
-    button: {
-      margin: '10px 0', // Espaciado vertical entre botones
-      padding: '10px 20px',
-      fontSize: '16px',
-      border: 'none',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      transition: 'background-color 0.3s',
-      width: '100%', // Ancho completo
-    },
-    googleButton: {
-      backgroundColor: 'purple',
-      color: 'white',
-    },
-    signupButton: {
-      backgroundColor: '#EF007E',
-      color: 'white',
-    },
-    input: {
-      margin: '4px 0',
-      padding: '4px',
-      fontSize: '16px',
-      border: '1px solid #ddd',
-      borderRadius: '5px',
-      width: '100%',
-    },
-    error: {
-      color: 'red',
-    },
-  };
+// Estilos en línea
+const styles = {
+  container: {
+    display: 'flex' as const,
+    flexDirection: 'column' as const,
+    alignItems: 'center' as const,
+    justifyContent: 'center' as const,
+    margin: '20px',
+    padding: '20px',
+    border: '1px solid #ddd',
+    borderRadius: '10px',
+    backgroundColor: '#CAE9FF', // Fondo de las tarjetas de información
+    maxWidth: '400px',
+    height: 'auto',
+    position: 'absolute' as const,
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+  },
+  button: {
+    margin: '10px 0', // Espaciado vertical entre botones
+    padding: '10px 20px',
+    fontSize: '16px',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s',
+    width: '100%', // Ancho completo
+  },
+  loginButton: {
+    backgroundColor: '#1B4965', // Color oscuro para "Iniciar sesión"
+    color: '#FFFFFF', // Texto en blanco para contraste
+  },
+  signupButton: {
+    backgroundColor: '#62B6CB', // Color claro para "Registrarse"
+    color: '#FFFFFF',
+  },
+  backButton: {
+    backgroundColor: '#99D500', // Verde para "Volver" o "Confirmar"
+    color: '#FFFFFF',
+  },
+  input: {
+    margin: '4px 0',
+    padding: '4px',
+    fontSize: '16px',
+    border: '1px solid #ddd',
+    borderRadius: '5px',
+    width: '100%',
+  },
+  error: {
+    color: 'red',
+  },
+  googleButton: {
+    backgroundColor: '#99d500',
+    color: 'white',
+  },
+};
+
+
 
   return (
     <div style={styles.container}>

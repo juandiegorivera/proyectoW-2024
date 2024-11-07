@@ -16,6 +16,7 @@
     "@expo/vector-icons": "^14.0.2",
     "@headlessui/react": "^2.1.5",
     "@heroicons/react": "^2.1.5",
+    "@react-native-firebase/firestore": "^21.3.0",
     "@react-native-picker/picker": "^2.8.0",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/stack": "^6.4.1",
