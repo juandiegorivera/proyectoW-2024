@@ -2,7 +2,7 @@
 import React from 'react';
 import { NativeRouter, Route, Routes, useNavigate } from 'react-router-native';
 import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native';
-import RegisterForm from './Screens/Registro';
+import RegisterForm from './Screens/Registrarse/Registro';
 import Mapeishon from 'src/Modules/Mapa/mapa';
 import ComplaintForm from './Denuncia/components/CrimeForm';
 import CrimenList from './Denuncia/components/CrimeList';
