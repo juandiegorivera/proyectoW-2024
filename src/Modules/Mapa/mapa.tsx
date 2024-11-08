@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// "use client" se utiliza en proyectos de Next.js para especificar que este archivo debe ser renderizado en el lado del cliente.
+"use client"; // se utiliza en proyectos de Next.js para especificar que este archivo debe ser renderizado en el lado del cliente.
 
 import {
   APIProvider,     // Proveedor de la API de Google Maps.
@@ -8,6 +8,8 @@ import {
   Pin,             // Pin es un componente visual que se utiliza dentro del marcador.
   InfoWindow,      // Ventana de información que aparece cuando se interactúa con el marcador.
 } from "@vis.gl/react-google-maps";
+
+
 
 interface MapaProps {
   children: React.ReactNode; // Añadido para aceptar children
@@ -37,7 +39,9 @@ export const Mapeishon: React.FC<MapaProps> = ({ children }) => {
     <APIProvider apiKey="AIzaSyAcOwXuYm7szYIAvaDd7mEWTWy9IZpSrYM">
       {/* Contenedor que abarca todo el espacio disponible en la pantalla para el Mapa */}
       <div style={{ height: "100vh", width: "100%" }}>
-        <Map zoom={zoom}  mapId={process.env.NEXT_PUBLIC_MAP_ID}>
+        <Map 
+        zoom={zoom}  
+        mapId={ 55eb5b901c013014 }>
           {/* AdvancedMarker permite definir un marcador personalizado en el Mapa */}
           <AdvancedMarker position={position} onClick={() => setOpen(true)}>
             <Pin
@@ -68,28 +72,3 @@ export const Mapeishon: React.FC<MapaProps> = ({ children }) => {
 
 export default Mapeishon;
 
-/*
-import React, { ReactNode } from 'react';
-import { APIProvider, Map } from "@vis.gl/react-google-maps";
-
-interface MapaProps {
-  children: ReactNode;
-}
-
-export const Mapa: React.FC<MapaProps> = ({ children }) => {
-  return (
-    <APIProvider apiKey="TU_CLAVE_DE_API_AQUI">
-      <div style={{ width: '100%', height: '100vh' }}>
-        <Map
-          zoom={10}
-          center={{ lat: 28, lng: -82 }}
-          gestureHandling={'greedy'}
-          disableDefaultUI={true}
-        >
-          {children}
-        </Map>
-      </div>
-    </APIProvider>
-  );
-};
-*/
