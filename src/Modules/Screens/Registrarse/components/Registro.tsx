@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CSSProperties } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useRegistro from '../hook/hookregistro'; // Importar el hook
 
 // Interfaz que define la estructura de los datos del formulario de registro
 interface RegisterFormData {
@@ -12,31 +13,26 @@ interface RegisterFormData {
 
 // Componente funcional para el formulario de registro
 const RegisterForm: React.FC = () => {
-  // Estado para almacenar los datos del formulario
-  const [formData, setFormData] = useState<RegisterFormData>({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
+  // Usar el hook para manejar el registro
+  const { username, setUsername, email, setEmail, password, setPassword, handleSubmit } = useRegistro();
+  const navigate = useNavigate();
 
   // Estado para almacenar los errores de validación
   const [errors, setErrors] = useState<string[]>([]);
 
   // Maneja los cambios en los campos de entrada del formulario
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData, // Mantiene los datos existentes
-      [e.target.name]: e.target.value, // Actualiza el campo correspondiente
-    });
+    setUsername(e.target.value);
+    setEmail(e.target.value);
+    setPassword(e.target.value);
   };
 
   // Maneja el envío del formulario
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault(); // Previene el comportamiento por defecto del formulario
-    const validationErrors = validateForm(formData); // Valida los datos del formulario
+    const validationErrors = validateForm({ username, email, password, confirmPassword: password }); // Validar los datos
     if (validationErrors.length === 0) {
-      console.log('Registrando usuario:', formData); // Muestra los datos en la consola
+      handleSubmit(username, email, password); // Llamar a la función de registro
       navigate('/'); // Redirige al menú desplegable
     } else {
       setErrors(validationErrors); // Establece los errores de validación en el estado
@@ -61,8 +57,6 @@ const RegisterForm: React.FC = () => {
     return errors; // Devuelve el array de errores
   };
 
-  const navigate = useNavigate();
-
   const handleBack = () => {
     navigate('/'); // Redirige a la página de inicio
   };
@@ -71,14 +65,14 @@ const RegisterForm: React.FC = () => {
     <div style={styles.container}>
       <div style={styles.formContainer}>
         <h2 style={styles.title}>Regístrate</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleFormSubmit}>
           <div style={styles.inputGroup}>
             <label htmlFor="username">Nombre de Usuario:</label>
             <input
               type="text"
               id="username"
               name="username"
-              value={formData.username}
+              value={username}
               onChange={handleInputChange}
               required
               style={styles.input}
@@ -90,7 +84,7 @@ const RegisterForm: React.FC = () => {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
+              value={email}
               onChange={handleInputChange}
               required
               style={styles.input}
@@ -102,7 +96,7 @@ const RegisterForm: React.FC = () => {
               type="password"
               id="password"
               name="password"
-              value={formData.password}
+              value={password}
               onChange={handleInputChange}
               required
               style={styles.input}
@@ -114,7 +108,7 @@ const RegisterForm: React.FC = () => {
               type="password"
               id="confirmPassword"
               name="confirmPassword"
-              value={formData.confirmPassword}
+              value={password}
               onChange={handleInputChange}
               required
               style={styles.input}

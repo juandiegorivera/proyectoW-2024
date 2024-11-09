@@ -8,7 +8,7 @@ import ComplaintForm from './src/Modules/Denuncia/components/CrimeForm';
 import CrimenList from './src/Modules/Denuncia/components/CrimeList';
 import CrimenAdd from './src/Modules/Denuncia/components/CrimeAdd';
 import Login from './src/Modules/Screens/Login';
-import RegisterForm from './src/Modules/Screens/Registrarse/Registro';
+import RegisterForm from './src/Modules/Screens/Registrarse/components/Registro';
 import Conexiones from './src/Modules/conexiones';
 
 

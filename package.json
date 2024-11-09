@@ -24,7 +24,7 @@
     "bootstrap": "^5.3.3",
     "expo": "~51.0.24",
     "expo-status-bar": "~1.12.1",
-    "firebase": "^10.13.1",
+    "firebase": "^10.14.1",
     "imurmurhash": "^0.1.4",
     "js-tokens": "^9.0.0",
     "ms": "^2.1.3",
