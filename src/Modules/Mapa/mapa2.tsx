@@ -12,7 +12,8 @@ import {
 export default function Intro() {
     const position = {lat: 53.54, lng: 10};
     const [open, setOpen] = useState(false);
-
+    const position2 = {lat: 55.54, lng: 10};
+    
     return (
         <APIProvider apiKey='AIzaSyAcOwXuYm7szYIAvaDd7mEWTWy9IZpSrYM'>
             <div style={{height: "100vh", width: "100%"}}>
