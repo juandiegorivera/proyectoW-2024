@@ -3,7 +3,6 @@ import React from 'react';
 import { NativeRouter, Route, Routes, useNavigate } from 'react-router-native';
 import { View, Text, TouchableOpacity, StyleSheet, Animated, Button } from 'react-native';
 import Menu from './src/Modules/Menu';
-import Mapeishon from './src/Modules/Mapa/mapa'; 
 import ComplaintForm from './src/Modules/Denuncia/components/CrimeForm';
 import CrimenList from './src/Modules/Denuncia/components/CrimeList';
 import CrimenAdd from './src/Modules/Denuncia/components/CrimeAdd';
@@ -20,7 +19,7 @@ const Mapa: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 // App.tsx
 const App: React.FC = () => {
-  return <Conexiones />;
+  return <Menu />;
 };
 
 export default App;

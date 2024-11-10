@@ -54,7 +54,7 @@ const RoboForm: React.FC<RoboFormProps> = ({ handleSubmit }) => {
 const styles = StyleSheet.create({
   form: {
     padding: 24,
-    backgroundColor: '#1E1E2E',
+    backgroundColor: '#CAE9FF',  // Cambiado a fondo blanco
     borderRadius: 12,
   },
   inputGroup: {
@@ -63,38 +63,38 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     marginBottom: 8,
-    color: '#E0E0E0',
+    color: '#000066',  // Cambiado a azul oscuro como en la imagen
     fontWeight: '600',
   },
   input: {
     borderWidth: 1,
-    borderColor: '#3A3A50',
-    backgroundColor: '#2A2A3A',
+    borderColor: '#87CEEB',  // Azul claro para los bordes
+    backgroundColor: '#FFFFFF',  // Fondo blanco para los inputs
     padding: 12,
     borderRadius: 8,
     fontSize: 16,
-    color: '#FFFFFF',
+    color: '#000000',  // Texto negro
   },
   button: {
-    backgroundColor: '#3498db',
+    backgroundColor: '#90EE90',  // Verde claro para el botón principal
     padding: 15,
     borderRadius: 8,
     alignItems: 'center',
     marginTop: 10,
   },
   buttonText: {
-    color: '#FFFFFF',
+    color: '#000000',  // Texto negro
     fontSize: 18,
     fontWeight: '600',
   },
   inputDetalles: {
     borderWidth: 1,
-    borderColor: '#3A3A50',
-    backgroundColor: '#2A2A3A',
+    borderColor: '#87CEEB',  // Azul claro para los bordes
+    backgroundColor: '#FFFFFF',  // Fondo blanco
     padding: 12,
     borderRadius: 8,
     fontSize: 16,
-    color: '#FFFFFF',
+    color: '#000000',  // Texto negro
     height: 100,
   },
 });

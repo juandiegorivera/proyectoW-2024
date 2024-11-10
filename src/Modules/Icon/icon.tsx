@@ -35,7 +35,7 @@ const Icon: React.FC<IconProps> = ({ type }) => {
   }
 
   return (
-    <div style={{ margin: '0 10px', cursor: 'pointer' }} onClick={() => window.location.href = url}>
+    <div style={{ margin: '0 10px' }}>
       <FontAwesomeIcon icon={icon} size="2x" />
     </div>
   );

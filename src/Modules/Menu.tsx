@@ -6,6 +6,7 @@ import ComplaintForm from 'src/Modules/Denuncia/components/CrimeForm';
 import EmergencyNumbers from './Llamadas';
 import AppGuide from './Ayuda';
 import useCrimen from 'src/Modules/Denuncia/hooks/hookcrimen';
+import Icon from './Icon/icon';
 
 const Menu = () => {
   const [menuAbierto, setMenuAbierto] = useState(false);
@@ -46,16 +47,35 @@ const Menu = () => {
 
       {menuAbierto && (
         <View style={styles.menuDesplegable}>
-          <TouchableOpacity onPress={() => seleccionarComponente('noticias')}>
+          <TouchableOpacity 
+            style={styles.menuItem} 
+            onPress={() => seleccionarComponente('noticias')}
+          >
+            <Icon type="newspaper" />
             <Text style={styles.opcionMenu}>Noticias</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => seleccionarComponente('Denuncia')}>
+          
+          <TouchableOpacity 
+            style={styles.menuItem} 
+            onPress={() => seleccionarComponente('Denuncia')}
+          >
+            <Icon type="bullhorn" />
             <Text style={styles.opcionMenu}>Denuncia</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => seleccionarComponente('Lineas de ayuda')}>
+          
+          <TouchableOpacity 
+            style={styles.menuItem} 
+            onPress={() => seleccionarComponente('Lineas de ayuda')}
+          >
+            <Icon type="phone" />
             <Text style={styles.opcionMenu}>Lineas de ayuda</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => seleccionarComponente('Ayuda')}>
+          
+          <TouchableOpacity 
+            style={styles.menuItem} 
+            onPress={() => seleccionarComponente('Ayuda')}
+          >
+            <Icon type="question" />
             <Text style={styles.opcionMenu}>Guia</Text>
           </TouchableOpacity>
         </View>
@@ -101,10 +121,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     zIndex: 1,
   },
+  menuItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
   opcionMenu: {
     color: '#fff',
     fontSize: 18,
-    marginBottom: 10,
   },
   contenidoPrincipal: {
     flex: 1,
