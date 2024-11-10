@@ -3,7 +3,6 @@ import React from 'react';
 import { NativeRouter, Route, Routes, useNavigate } from 'react-router-native';
 import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import RegisterForm from './Screens/Registrarse/components/Registro';
-import Mapeishon from 'src/Modules/Mapa/mapa';
 import ComplaintForm from './Denuncia/components/CrimeForm';
 import CrimenList from './Denuncia/components/CrimeList';
 import CrimenAdd from './Denuncia/components/CrimeAdd';

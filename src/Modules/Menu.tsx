@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import News from './Novedades/News';
 import ComplaintForm from 'src/Modules/Denuncia/components/CrimeForm';
 import EmergencyNumbers from './Llamadas';
-import AppGuide from './Ayuda';
+import AppGuide from './formguia/Ayuda'
 import useCrimen from 'src/Modules/Denuncia/hooks/hookcrimen';
 import Icon from './Icon/icon';
 
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 80,
     left: 20,
-    backgroundColor: '#2A0E61',
+    backgroundColor: '#CAE9FF',
     padding: 20,
     borderRadius: 10,
     zIndex: 1,
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   opcionMenu: {
-    color: '#fff',
+    color: '#1B4965',
     fontSize: 18,
   },
   contenidoPrincipal: {

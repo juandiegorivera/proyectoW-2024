@@ -17,11 +17,9 @@ const EmergencyNumbers: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#2A0E61',
+    backgroundColor: '#CAE9FF',
     borderRadius: 10,
     padding: 20,
-    borderWidth: 2,
-    borderColor: '#4A0E91',
   },
   item: {
     marginBottom: 10,
@@ -29,10 +27,10 @@ const styles = StyleSheet.create({
   number: {
     fontWeight: 'bold',
     marginRight: 5,
-    color: '#FFFFFF',
+    color: '#1B4965',
   },
   description: {
-    color: '#FFFFFF',
+    color: '#1B4965',
   },
 });
 
