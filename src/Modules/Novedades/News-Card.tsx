@@ -1,62 +1,50 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-type NewCardProps = {
+interface NewCardsProps {
   src: string;
   title: string;
   description: string;
-};
+}
 
-export const NewCard = ({
-  src,
-  title,
-  description,
-}: NewCardProps) => {
+const NewCards: React.FC<NewCardsProps> = ({ src, title, description }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.card}>
+      <Image source={{ uri: src }} style={styles.image} />
       <Text style={styles.title}>{title}</Text>
-      <Image
-        src={src}
-        alt={title}
-        style={styles.image}
-      />
-
-      <View style={styles.contentContainer}>
-        <Text style={styles.description}>{description}</Text>
-      </View>
+      <Text style={styles.description}>{description}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  card: {
+    backgroundColor: '#CAE9FF',
     borderRadius: 8,
-    overflow: 'hidden',
+    padding: 20,
+    marginBottom: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    borderWidth: 1,
-    borderColor: '#2A0E61',
-    backgroundColor: '#1A1A2E',
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   image: {
     width: '100%',
     height: 200,
-  },
-  contentContainer: {
-    padding: 16,
+    borderRadius: 8,
+    marginBottom: 16,
   },
   title: {
+    color: '#1B4965',
     fontSize: 24,
-    fontWeight: '600',
-    color: '#FFFFFF',
+    fontWeight: '500',
     marginBottom: 8,
-    textAlign: 'center',
   },
   description: {
+    color: '#333',
     fontSize: 16,
-    color: '#A0A0B2',
   },
 });
+
+export default NewCards;

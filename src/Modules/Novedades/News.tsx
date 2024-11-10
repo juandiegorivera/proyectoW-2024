@@ -1,47 +1,62 @@
 import React, { useState } from 'react';
+import { View, StyleSheet, ScrollView, Text } from 'react-native';
 import { Novedades } from "../../../constants";
-import { NewCard } from './News-Card';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import NewCards from '../Novedades/News-Card';
 
 export const News = () => {
-  // Estado para controlar la visibilidad de la barra de desplazamiento
   const [showScrollbar, setShowScrollbar] = useState(false);
 
   return (
-    <ScrollView 
-      contentContainerStyle={styles.container}
-      // Controla la visibilidad de la barra de desplazamiento vertical
-      showsVerticalScrollIndicator={showScrollbar}
-      // Oculta la barra de desplazamiento cuando el usuario termina de tocar la pantalla
-      onTouchEnd={() => setShowScrollbar(false)}
-    >
-      {Novedades.map((noticias) => (
-        <View key={noticias.title}>
-          <NewCard
-            src={noticias.image}
-            title={noticias.title}
-            description={noticias.description}
-          />
-        </View>
-      ))}
-    </ScrollView>
+    <View style={styles.wrapper}>
+      <Text style={styles.pageTitle}>Novedades</Text>
+      <ScrollView 
+        contentContainerStyle={styles.container}
+        showsVerticalScrollIndicator={showScrollbar}
+        onTouchEnd={() => setShowScrollbar(false)}
+      >
+        {Novedades.map((noticias) => (
+          <View key={noticias.title} style={styles.cardWrapper}>
+            <NewCards
+              src={noticias.image}
+              title={noticias.title}
+              description={noticias.description}
+            />
+          </View>
+        ))}
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    backgroundColor: '#59baff',
+    flex: 1,
+    width: '100%',
+    padding: 16,
+    maxWidth: 800,
+    alignSelf: 'center',
+    marginTop: 20,
+  },
+  pageTitle: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#1B4965',
+    textAlign: 'center',
+    marginBottom: 24,
+    marginTop: 8,
+  },
   container: {
-    flexDirection: 'column',
     gap: 20,
-    flexGrow: 1,
-    padding: 30,
-    borderWidth: 2,
-    borderColor: '#2A0E61',
-    borderRadius: 10,
-    backgroundColor: '#2A0E61',
-    width: '60%', 
-    alignSelf: 'center', // Centra el contenedor horizontalmente
+    paddingBottom: 20,
+  },
+  cardWrapper: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
 });
 
 export default News;
-

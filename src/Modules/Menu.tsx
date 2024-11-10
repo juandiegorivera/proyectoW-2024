@@ -11,8 +11,8 @@ import Icon from './Icon/icon';
 const Menu = () => {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [componenteSeleccionado, setComponenteSeleccionado] = useState<'noticias' | 'Denuncia' | 'Lineas de ayuda' | 'Ayuda' | null>(null);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  // Utilizamos el hook useCrimen para manejar los estados y funciones del formulario
   const {
     tipoDeRobo,
     setTipoDeRobo,
@@ -37,12 +37,10 @@ const Menu = () => {
     }).start();
   };
 
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-
   return (
     <View style={styles.contenedor}>
       <TouchableOpacity onPress={toggleMenu} style={styles.botonHamburguesa}>
-        <Ionicons name="menu" size={30} color="#fff" />
+        <Ionicons name="menu" size={30} color="#1B4965" />
       </TouchableOpacity>
 
       {menuAbierto && (
@@ -111,6 +109,14 @@ const styles = StyleSheet.create({
     top: 40,
     left: 20,
     zIndex: 1,
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   menuDesplegable: {
     position: 'absolute',
@@ -118,17 +124,26 @@ const styles = StyleSheet.create({
     left: 20,
     backgroundColor: '#CAE9FF',
     padding: 20,
-    borderRadius: 10,
+    borderRadius: 12,
     zIndex: 1,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 5,
   },
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 16,
+    padding: 8,
+    borderRadius: 8,
   },
   opcionMenu: {
     color: '#1B4965',
     fontSize: 18,
+    marginLeft: 12,
+    fontWeight: '500',
   },
   contenidoPrincipal: {
     flex: 1,
