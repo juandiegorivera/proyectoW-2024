@@ -9,6 +9,7 @@ import CrimenList from './Denuncia/components/CrimeList';
 import CrimenAdd from './Denuncia/components/CrimeAdd';
 import Login from './Screens/Login';
 
+
 // Editar el componente Mapa para aceptar children
 const Mapa: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <div>{children}</div>;

@@ -8,6 +8,7 @@ const useRegistro = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   // Función para manejar el envío de nuevos registros
   const handleSubmit = async (username: string, email: string, password: string) => {
@@ -27,6 +28,7 @@ const useRegistro = () => {
       setUsername("");
       setEmail("");
       setPassword("");
+      setConfirmPassword("");
     } catch (error) {
       console.error("Error al registrar el usuario: ", error);
     }
@@ -40,6 +42,8 @@ const useRegistro = () => {
     setEmail,
     password,
     setPassword,
+    confirmPassword,
+    setConfirmPassword,
     handleSubmit,
   };
 };

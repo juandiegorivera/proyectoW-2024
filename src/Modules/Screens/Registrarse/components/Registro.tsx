@@ -5,6 +5,7 @@ import useRegistro from '../hook/hookregistro'; // Importar el hook
 
 // Interfaz que define la estructura de los datos del formulario de registro
 interface RegisterFormData {
+  
   username: string; // Nombre de usuario
   email: string;    // Correo electrónico
   password: string; // Contraseña
@@ -14,7 +15,7 @@ interface RegisterFormData {
 // Componente funcional para el formulario de registro
 const RegisterForm: React.FC = () => {
   // Usar el hook para manejar el registro
-  const { username, setUsername, email, setEmail, password, setPassword, handleSubmit } = useRegistro();
+  const { username, setUsername, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, handleSubmit } = useRegistro();
   const navigate = useNavigate();
 
   // Estado para almacenar los errores de validación
@@ -22,9 +23,16 @@ const RegisterForm: React.FC = () => {
 
   // Maneja los cambios en los campos de entrada del formulario
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
-    setEmail(e.target.value);
-    setPassword(e.target.value);
+    const { name, value } = e.target; // Obtener el nombre y el valor del input
+    if (name === 'username') {
+      setUsername(value); // Actualiza solo el nombre de usuario
+    } else if (name === 'email') {
+      setEmail(value); // Actualiza solo el correo electrónico
+    } else if (name === 'password') {
+      setPassword(value); // Actualiza solo la contraseña
+    } else if (name === 'confirmPassword') {
+      setConfirmPassword(value); // Actualiza solo la confirmación de contraseña
+    }
   };
 
   // Maneja el envío del formulario
@@ -108,7 +116,7 @@ const RegisterForm: React.FC = () => {
               type="password"
               id="confirmPassword"
               name="confirmPassword"
-              value={password}
+              value={confirmPassword}
               onChange={handleInputChange}
               required
               style={styles.input}

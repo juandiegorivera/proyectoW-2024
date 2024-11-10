@@ -14,5 +14,6 @@ const addRegistro = async (username: string, email: string, password: string) =>
   }
 };
 
+
 // Exportar la función para que pueda ser utilizada en otros componentes
 export default addRegistro;
