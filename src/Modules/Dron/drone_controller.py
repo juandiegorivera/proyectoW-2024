@@ -10,15 +10,34 @@ CORS(app)                            # Habilita CORS en la aplicación
 # Dirección Bluetooth del dron
 mamboAddr = "e0:14:d0:63:3d:d0"      # Cambiar por la dirección MAC de tu dron
 
+# Variables globales para rastrear el estado
+mambo = None
+is_connected = False
+
 # Ruta para conectar con el dron
 @app.route('/api/connect', methods=['POST'])    # Define endpoint POST en /api/connect
-def connect_drone():
+def toggle_drone():
+    global mambo, is_connected
     try:
-        mambo = Mambo(mamboAddr, use_wifi=False)    # Crea instancia del dron vía Bluetooth
-        success = mambo.connect(num_retries=3)       # Intenta conectar 3 veces
-        return jsonify({"connected": success})       # Devuelve el resultado de la conexión
+        if not is_connected:
+            # Conectar el dron
+            mambo = Mambo(mamboAddr, use_wifi=False)
+            success = mambo.connect(num_retries=3)
+            if success:
+                is_connected = True
+                return jsonify({"status": "connected", "message": "Dron conectado"})
+            else:
+                return jsonify({"error": "No se pudo conectar al dron"}), 500
+        else:
+            # Desconectar el dron
+            if mambo:
+                mambo.disconnect()
+                is_connected = False
+                mambo = None
+                return jsonify({"status": "disconnected", "message": "Dron desconectado"})
+            
     except Exception as e:
-        return jsonify({"error": str(e)}), 500      # Si hay error, devuelve código 500
+        return jsonify({"error": str(e)}), 500
 
 # Ruta para hacer despegar el dron
 @app.route('/api/takeoff', methods=['POST'])    # Define endpoint POST en /api/takeoff

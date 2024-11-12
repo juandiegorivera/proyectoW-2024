@@ -1,95 +1,55 @@
 // Importamos las bibliotecas necesarias
-import React, { useState, useCallback } from 'react';  // React y hooks para manejo de estado y memorización
-import axios from 'axios';                            // Cliente HTTP para realizar peticiones al backend
+import React, { useState } from 'react';                    // React y hook para manejar estado
+import { View, TouchableOpacity, Text } from 'react-native'; // Componentes básicos de React Native
+import axios from 'axios';                                  // Cliente HTTP para llamadas al API
 
-// Definimos el componente funcional DroneController
+// Definimos el componente como una función de tipo React.FC (Functional Component)
 const DroneController: React.FC = () => {
-    // Estado para controlar si el dron está conectado (true/false)
-    const [isConnected, setIsConnected] = useState(false);    
-    
-    // Estado para almacenar mensajes de error (string o null)
-    const [error, setError] = useState<string | null>(null);  
-    
-    // Estado para mostrar indicadores de carga durante operaciones
-    const [isLoading, setIsLoading] = useState(false);        
+    // Creamos un estado booleano para controlar si el dron está encendido
+    // isOn: variable del estado
+    // setIsOn: función para actualizar el estado
+    const [isOn, setIsOn] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    // Función memorizada para conectar el dron
-    const connectDrone = useCallback(async () => {
+    // Función que se ejecuta cuando se presiona el botón
+    const toggleDrone = async () => {
         try {
-            setIsLoading(true);                              // Inicia el estado de carga
-            setError(null);                                  // Limpia cualquier error previo
-            
-            // Realiza petición POST al endpoint de conexión
-            const response = await axios.post('http://localhost:5000/api/connect');  
-            
-            // Actualiza el estado de conexión según la respuesta
-            setIsConnected(response.data.connected);         
-        } catch (err) {
-            setError('Error conectando con el dron');        // Establece mensaje de error
-            setIsConnected(false);                          // Asegura que el dron aparezca desconectado
-        } finally {
-            setIsLoading(false);                            // Finaliza el estado de carga
+            const response = await axios.post('http://localhost:5000/api/connect');
+            if (response.data.status === 'connected' || response.data.status === 'disconnected') {
+                setIsOn(response.data.status === 'connected');
+                setError(null);
+            }
+        } catch (error) {
+            // Si hay un error, lo mostramos en la consola
+            console.error('Error al conectar el dron');
+            setError('Error al conectar con el dron');
         }
-    }, []);  // Array vacío indica que la función no tiene dependencias
+    };
 
-    // Función memorizada para iniciar el despegue
-    const handleTakeoff = useCallback(async () => {
-        // Verifica que el dron esté conectado antes de intentar despegar
-        if (!isConnected) {                                 
-            setError('El dron debe estar conectado para despegar');
-            return;
-        }
-
-        try {
-            setIsLoading(true);                            // Inicia el estado de carga
-            setError(null);                                // Limpia cualquier error previo
-            
-            // Realiza petición POST al endpoint de despegue
-            await axios.post('http://localhost:5000/api/takeoff');  
-        } catch (err) {
-            setError('Error durante el despegue');         // Establece mensaje de error
-        } finally {
-            setIsLoading(false);                          // Finaliza el estado de carga
-        }
-    }, [isConnected]);  // Dependencia del estado de conexión
-
-    // Renderiza la interfaz de usuario
+    // Renderizamos la interfaz del componente
     return (
-        // Contenedor principal con padding
-        <div className="p-4">
-            // Título del componente
-            <h2 className="text-2xl mb-4">Control del Dron</h2>
-            
-            // Contenedor de botones con espaciado vertical
-            <div className="space-y-4">
-                {/* Botón para conectar el dron */}
-                <button 
-                    onClick={connectDrone}                   // Manejador del evento click
-                    className="bg-blue-500 text-white px-4 py-2 rounded"  // Estilos Tailwind
-                >
-                    Conectar Dron
-                </button>
-                
-                {/* Botón de despegue - solo visible si el dron está conectado */}
-                {isConnected && (
-                    <button 
-                        onClick={handleTakeoff}             // Manejador del evento click
-                        className="bg-green-500 text-white px-4 py-2 rounded"  // Estilos Tailwind
-                    >
-                        Despegar
-                    </button>
-                )}
-
-                {/* Muestra mensaje de error si existe */}
-                {error && (
-                    <div className="text-red-500">         // Texto en rojo para errores
-                        {error}
-                    </div>
-                )}
-            </div>
-        </div>
+        // View es el contenedor principal (equivalente a div en web)
+        <View style={{ padding: 16 }}>
+            {/* TouchableOpacity es un botón con efecto de opacidad al tocarlo */}
+            <TouchableOpacity 
+                onPress={toggleDrone}    // Función que se ejecuta al presionar
+                style={{ 
+                    backgroundColor: isOn ? '#22c55e' : '#3b82f6', // Verde si está encendido, azul si está apagado
+                    padding: 8,
+                    borderRadius: 4
+                }}
+            >
+                {/* Texto del botón que cambia según el estado */}
+                <Text style={{ color: 'white' }}>
+                    {isOn ? 'Apagar Dron' : 'Encender Dron'}
+                </Text>
+            </TouchableOpacity>
+            {error && (
+                <Text style={{ color: 'red', marginTop: 8 }}>{error}</Text>
+            )}
+        </View>
     );
 };
 
-// Exporta el componente para su uso en otras partes de la aplicación
+// Exportamos el componente para poder usarlo en otras partes de la aplicación
 export default DroneController;

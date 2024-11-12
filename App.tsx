@@ -9,6 +9,7 @@ import CrimenAdd from './src/Modules/Denuncia/components/CrimeAdd';
 import Login from './src/Modules/Screens/Login';
 import RegisterForm from './src/Modules/Screens/Registrarse/components/Registro';
 import Conexiones from './src/Modules/conexiones';
+import DroneController from './src/Modules/Dron/DroneController';
 
 
 // Editar el componente Mapa para aceptar children
@@ -19,7 +20,7 @@ const Mapa: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 // App.tsx
 const App: React.FC = () => {
-  return <Conexiones/>;
+  return <Menu/>;
 };
 
 export default App;
