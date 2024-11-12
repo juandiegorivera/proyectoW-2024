@@ -22,14 +22,13 @@ export default function Intro() {
     const position9 = {lat: -38.939508, lng: -68.1301462}; //Comisarìa N° 21
     const position10 = {lat: -38.9409107, lng: -68.1165849}; //Comisarìa N° 3
     const position11 = {lat: -38.9605517, lng: -68.1098781}; //Comisarìa N° 2
-    const position12 = {lat: 55.54, lng: 10}; //Comisarìa N° 
-    const position13 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position12 = {lat: -38.953247, lng: -68.0886963}; //DIRECCIÓN UNIDADES DE DETENCIÓN
+    const position13 = {lat: -38.9441943, lng: -68.1181741}; //Comisaria Barrio Islas Malvinas
     const position14 = {lat: 55.54, lng: 10}; //Comisarìa N° 
     const position15 = {lat: 55.54, lng: 10}; //Comisarìa N° 
     const position16 = {lat: 55.54, lng: 10}; //Comisarìa N° 
     const position17 = {lat: 55.54, lng: 10}; //Comisarìa N° 
     const position18 = {lat: 55.54, lng: 10}; //Comisarìa N° 
-    const position19 = {lat: 55.54, lng: 10}; //Comisarìa N° 
 return (
         <APIProvider apiKey='AIzaSyAcOwXuYm7szYIAvaDd7mEWTWy9IZpSrYM'>
             <div style={{height: "100vh", width: "100%"}}>
@@ -186,7 +185,7 @@ return (
 
                     // Comisarìa N°2
 
-                     <AdvancedMarker position={position10} onClick={() => setOpen(true)}> 
+                     <AdvancedMarker position={position11} onClick={() => setOpen(true)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -195,8 +194,40 @@ return (
                     </AdvancedMarker>
 
                     {open && (
-                        <InfoWindow position={position10} onCloseClick={() => setOpen(false)}>
+                        <InfoWindow position={position11} onCloseClick={() => setOpen(false)}>
                             <p>Comisarìa N°2  - telefono: 299 442-4063</p>
+                        </InfoWindow>
+                    )}
+
+                    // DIRECCIÓN UNIDADES DE DETENCIÓN
+
+                     <AdvancedMarker position={position12} onClick={() => setOpen(true)}> 
+                        <Pin
+                            background={"#62B6CB"}
+                            borderColor={"#CAE9FF"}
+                            glyphColor={"#1B4965"}
+                        />
+                    </AdvancedMarker>
+
+                    {open && (
+                        <InfoWindow position={position12} onCloseClick={() => setOpen(false)}>
+                            <p>DIRECCIÓN UNIDADES DE DETENCIÓN  - telefono: 299 442-0435</p>
+                        </InfoWindow>
+                    )}
+
+                    // Comisaria Barrio Islas Malvinas
+
+                     <AdvancedMarker position={position13} onClick={() => setOpen(true)}> 
+                        <Pin
+                            background={"#62B6CB"}
+                            borderColor={"#CAE9FF"}
+                            glyphColor={"#1B4965"}
+                        />
+                    </AdvancedMarker>
+
+                    {open && (
+                        <InfoWindow position={position13} onCloseClick={() => setOpen(false)}>
+                            <p>Comisaria Barrio Islas Malvinas  - telefono: 299 576-6042</p>
                         </InfoWindow>
                     )}
                 </Map>
