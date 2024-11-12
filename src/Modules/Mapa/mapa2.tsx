@@ -24,8 +24,8 @@ export default function Intro() {
     const position11 = {lat: -38.9605517, lng: -68.1098781}; //Comisarìa N° 2
     const position12 = {lat: -38.953247, lng: -68.0886963}; //DIRECCIÓN UNIDADES DE DETENCIÓN
     const position13 = {lat: -38.9441943, lng: -68.1181741}; //Comisaria Barrio Islas Malvinas
-    const position14 = {lat: 55.54, lng: 10}; //Comisarìa N° 
-    const position15 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position14 = {lat: -38.9401889, lng: -68.0912232}; //COMISARIA CUARTA
+    const position15 = {lat: -38.9625956, lng: -68.0844104}; //Policia de la Provincia de Neuquén
     const position16 = {lat: 55.54, lng: 10}; //Comisarìa N° 
     const position17 = {lat: 55.54, lng: 10}; //Comisarìa N° 
     const position18 = {lat: 55.54, lng: 10}; //Comisarìa N° 
@@ -217,7 +217,7 @@ return (
 
                     // Comisaria Barrio Islas Malvinas
 
-                     <AdvancedMarker position={position13} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position13} onClick={() => setOpen(true)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -228,6 +228,37 @@ return (
                     {open && (
                         <InfoWindow position={position13} onCloseClick={() => setOpen(false)}>
                             <p>Comisaria Barrio Islas Malvinas  - telefono: 299 576-6042</p>
+                        </InfoWindow>
+                    )}
+    const position15 = {lat: -38.9625956, lng: -68.0844104}; //Policia de la Provincia de Neuquén
+
+                    // Comisaria CUARTA
+                    <AdvancedMarker position={position14} onClick={() => setOpen(true)}> 
+                        <Pin
+                            background={"#62B6CB"}
+                            borderColor={"#CAE9FF"}
+                            glyphColor={"#1B4965"}
+                        />
+                    </AdvancedMarker>
+
+                    {open && (
+                        <InfoWindow position={position14} onCloseClick={() => setOpen(false)}>
+                            <p>Comisaria Cuarta - telefono: 299 433-1449</p>
+                        </InfoWindow>
+                    )}
+
+                    // Policia de la Provincia de Neuquén
+                    <AdvancedMarker position={position14} onClick={() => setOpen(true)}> 
+                        <Pin
+                            background={"#62B6CB"}
+                            borderColor={"#CAE9FF"}
+                            glyphColor={"#1B4965"}
+                        />
+                    </AdvancedMarker>
+
+                    {open && (
+                        <InfoWindow position={position15} onCloseClick={() => setOpen(false)}>
+                            <p>Policia de la Provincia de Neuquén - telefono: 299 442-4100</p>
                         </InfoWindow>
                     )}
                 </Map>
