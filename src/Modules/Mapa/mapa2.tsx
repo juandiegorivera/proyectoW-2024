@@ -26,8 +26,8 @@ export default function Intro() {
     const position13 = {lat: -38.9441943, lng: -68.1181741}; //Comisaria Barrio Islas Malvinas
     const position14 = {lat: -38.9401889, lng: -68.0912232}; //COMISARIA CUARTA
     const position15 = {lat: -38.9625956, lng: -68.0844104}; //Policia de la Provincia de Neuquén
-    const position16 = {lat: 55.54, lng: 10}; //Comisarìa N° 
-    const position17 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position16 = {lat: 55.54, lng: 10}; //Departamento de Seguridad Metropolitana
+    const position17 = {lat: 55.54, lng: 10}; //Comisarìa N° 1
     const position18 = {lat: 55.54, lng: 10}; //Comisarìa N° 
 return (
         <APIProvider apiKey='AIzaSyAcOwXuYm7szYIAvaDd7mEWTWy9IZpSrYM'>
@@ -259,6 +259,38 @@ return (
                     {open && (
                         <InfoWindow position={position15} onCloseClick={() => setOpen(false)}>
                             <p>Policia de la Provincia de Neuquén - telefono: 299 442-4100</p>
+                        </InfoWindow>
+                    )}
+
+                    //Departamento de Seguridad Metropolitana
+                    
+                    <AdvancedMarker position={position16} onClick={() => setOpen(true)}> 
+                        <Pin
+                            background={"#62B6CB"}
+                            borderColor={"#CAE9FF"}
+                            glyphColor={"#1B4965"}
+                        />
+                    </AdvancedMarker>
+
+                    {open && (
+                        <InfoWindow position={position16} onCloseClick={() => setOpen(false)}>
+                            <p>Departamento de Seguridad Metropolitana - telefono: 299 448-5930</p>
+                        </InfoWindow>
+                    )}
+
+                    // Comisaría N°1 
+
+                    <AdvancedMarker position={position17} onClick={() => setOpen(true)}> 
+                        <Pin
+                            background={"#62B6CB"}
+                            borderColor={"#CAE9FF"}
+                            glyphColor={"#1B4965"}
+                        />
+                    </AdvancedMarker>
+
+                    {open && (
+                        <InfoWindow position={position17} onCloseClick={() => setOpen(false)}>
+                            <p>Comisaría N°1 - telefono: 299 442-4046</p>
                         </InfoWindow>
                     )}
                 </Map>
