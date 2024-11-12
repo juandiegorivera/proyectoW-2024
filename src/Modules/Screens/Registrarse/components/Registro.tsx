@@ -3,7 +3,7 @@ import { CSSProperties } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth'; // Importación necesaria para autenticación
 import { auth, db } from 'src/Modules/Firebase'; // Asegúrate de usar el módulo correcto de Firebase
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 // Interfaz para los datos de registro
 interface RegisterFormData {
@@ -34,6 +34,12 @@ const RegisterForm: React.FC = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  // Función para verificar si el usuario ya existe en Firestore
+  const checkUserExists = async (uid: string): Promise<boolean> => {
+    const userDoc = await getDoc(doc(db, 'users', uid));
+    return userDoc.exists();
+  };
+
   // Envío del formulario
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,6 +54,14 @@ const RegisterForm: React.FC = () => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
+        // Verificar si el usuario ya existe
+        const userExists = await checkUserExists(user.uid);
+        if (userExists) {
+          setErrors(['El usuario ya existe en la base de datos.']);
+          setIsSubmitting(false);
+          return;
+        }
+
         // Guardar datos adicionales en Firestore
         await setDoc(doc(db, 'users', user.uid), {
           username,
@@ -61,6 +75,7 @@ const RegisterForm: React.FC = () => {
           navigate('/');
         }, 2000);
       } catch (error: unknown) {
+        console.error("Error al registrar o guardar datos:", error);
         if (error instanceof Error) {
           if (error.message.includes('email-already-in-use')) {
             setErrors(['El correo electrónico ya está en uso.']);
