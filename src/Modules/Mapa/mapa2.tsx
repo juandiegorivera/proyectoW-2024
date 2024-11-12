@@ -10,10 +10,26 @@ import {
 } from "@vis.gl/react-google-maps";
 
 export default function Intro() {
-    const position = {lat: 53.54, lng: 10};
+    const position = {lat: -38.951666666667, lng: -68.074444444444};
     const [open, setOpen] = useState(false);
-    const position2 = {lat: 55.54, lng: 10};
-    
+    const position2 = {lat: -38.955964, lng: -68.0994502}; //Comisarìa N° 17
+    const position3 = {lat: -38.9677843, lng: -68.126897}; //Jefatura de policia 
+    const position4 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position5 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position6 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position7 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position8 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position9 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position10 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position11 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position12 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position13 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position14 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position15 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position16 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position17 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position18 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position19 = {lat: 55.54, lng: 10}; //Comisarìa N° 
     return (
         <APIProvider apiKey='AIzaSyAcOwXuYm7szYIAvaDd7mEWTWy9IZpSrYM'>
             <div style={{height: "100vh", width: "100%"}}>
@@ -22,7 +38,9 @@ export default function Intro() {
                     center={position}
                     mapId={'55eb5b901c013014'}
                 >
-                    <AdvancedMarker position={position} onClick={() => setOpen(true)}>
+
+                    // Comisaría N°
+                    <AdvancedMarker position={position2} onClick={() => setOpen(true)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -32,11 +50,15 @@ export default function Intro() {
 
                     {open && (
                         <InfoWindow position={position} onCloseClick={() => setOpen(false)}>
-                            <p>HELLOOO estoy en Hamburgo</p>
+                            <p>Comisaría N° 17 - telefono: 299 457-8947</p>
                         </InfoWindow>
                     )}
-                </Map>
-            </div>
-        </APIProvider>
-    );
-}
+
+                    // Jefatura de policia
+                    <AdvancedMarker position={position3} onClick={() => setOpen(true)}> 
+                        <Pin
+                            background={"#62B6CB"}
+                            borderColor={"#CAE9FF"}
+                            glyphColor={"#1B4965"}
+                        />
+                    </AdvancedMarker>
