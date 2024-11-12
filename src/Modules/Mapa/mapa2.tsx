@@ -20,8 +20,8 @@ export default function Intro() {
     const position7 = {lat: -38.9333082, lng: -68.196398}; //Comisarìa N° 18
     const position8 = {lat: -38.9434162, lng: -68.137032}; //Comisarìa N° 16
     const position9 = {lat: -38.939508, lng: -68.1301462}; //Comisarìa N° 21
-    const position10 = {lat: 55.54, lng: 10}; //Comisarìa N° 
-    const position11 = {lat: 55.54, lng: 10}; //Comisarìa N° 
+    const position10 = {lat: -38.9409107, lng: -68.1165849}; //Comisarìa N° 3
+    const position11 = {lat: -38.9605517, lng: -68.1098781}; //Comisarìa N° 2
     const position12 = {lat: 55.54, lng: 10}; //Comisarìa N° 
     const position13 = {lat: 55.54, lng: 10}; //Comisarìa N° 
     const position14 = {lat: 55.54, lng: 10}; //Comisarìa N° 
@@ -165,6 +165,38 @@ return (
                     {open && (
                         <InfoWindow position={position9} onCloseClick={() => setOpen(false)}>
                             <p>Comisarìa N°21 - telefono: 299 446-1577</p>
+                        </InfoWindow>
+                    )}
+
+                    // Comisarìa N°3
+
+                     <AdvancedMarker position={position10} onClick={() => setOpen(true)}> 
+                        <Pin
+                            background={"#62B6CB"}
+                            borderColor={"#CAE9FF"}
+                            glyphColor={"#1B4965"}
+                        />
+                    </AdvancedMarker>
+
+                    {open && (
+                        <InfoWindow position={position10} onCloseClick={() => setOpen(false)}>
+                            <p>Comisarìa N°3  - telefono: 299 443-2872</p>
+                        </InfoWindow>
+                    )}
+
+                    // Comisarìa N°2
+
+                     <AdvancedMarker position={position10} onClick={() => setOpen(true)}> 
+                        <Pin
+                            background={"#62B6CB"}
+                            borderColor={"#CAE9FF"}
+                            glyphColor={"#1B4965"}
+                        />
+                    </AdvancedMarker>
+
+                    {open && (
+                        <InfoWindow position={position10} onCloseClick={() => setOpen(false)}>
+                            <p>Comisarìa N°2  - telefono: 299 442-4063</p>
                         </InfoWindow>
                     )}
                 </Map>
