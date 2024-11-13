@@ -8,6 +8,7 @@ import {
   Pin,             // Pin es un componente visual que se utiliza dentro del marcador.
   InfoWindow,      // Ventana de información que aparece cuando se interactúa con el marcador.
 } from "@vis.gl/react-google-maps";
+import Menu from '../Menu';
 
 export default function Mapeishon() {
     const position = {lat: -38.9383376, lng: -68.0687734};
@@ -23,15 +24,18 @@ export default function Mapeishon() {
     const position10 = {lat: -38.9473107, lng: -68.0925849}; //Comisarìa N° 3 . 
     const position11 = {lat: -38.9605517, lng: -68.0588781}; //Comisarìa N° 2 . 
     const position12 = {lat: -38.952847, lng: -68.0659963}; //DIRECCIÓN UNIDADES DE DETENCIÓN . 
-    const position13 = {lat: -38.9441943, lng: -68.0831741}; //Comisaria Barrio Islas Malvinas
+    const position13 = {lat: -38.9441943, lng: -68.0831741}; //Comisaria Barrio Islas Malvinas .
     const position14 = {lat: -38.9349889, lng: -68.0735232}; //COMISARIA CUARTA .
     const position15 = {lat: -38.9625956, lng: -68.049104}; //Policia de la Provincia de Neuquén . 
     const position16 = {lat: -38.9479893, lng: -68.043191}; //Departamento de Seguridad Metropolitana .
     const position17 = {lat: -38.9521525, lng: -68.0538837}; //Comisarìa N° 1 . 
     const position18 = {lat: -38.9119607 , lng: -68.080777}; // Comisarìa N° 20 (parque industrial) . 
-return (
+    const [showMenu, setShowMenu] = useState(false);
+
+    return (
         <APIProvider apiKey='AIzaSyAcOwXuYm7szYIAvaDd7mEWTWy9IZpSrYM'>
-            <div style={{height: "100vh", width: "100%"}}>
+            <div style={{height: "100vh", width: "100%", position: 'relative'}}>
+                <Menu />
                 <Map
                     zoom={13}
                     center={position}

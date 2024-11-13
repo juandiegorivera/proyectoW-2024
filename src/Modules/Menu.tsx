@@ -125,8 +125,11 @@ const Menu = () => {
 
 const styles = StyleSheet.create({
   contenedor: {
-    flex: 1,
-    backgroundColor: 'green',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1000,
   },
   botonHamburguesa: {
     position: 'absolute',
