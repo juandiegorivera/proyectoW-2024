@@ -9,6 +9,7 @@ import Login from './src/Modules/Screens/Login';
 import RegisterForm from './src/Modules/Screens/Registrarse/components/Registro';
 import Conexiones from './src/Modules/conexiones';
 import DroneController from './src/Modules/Dron/DroneController';
+import Mapeishon from '@/Modules/Mapa/mapa2';
 
 
 // Editar el componente Mapa para aceptar children
