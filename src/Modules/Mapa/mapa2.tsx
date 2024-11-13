@@ -19,11 +19,11 @@ export default function Mapeishon() {
     const position6 = {lat: -38.9530000, lng: -68.1340562}; //Comisarìa N° 12 . 
     const position7 = {lat: -38.9336666, lng: -68.122398}; //Comisarìa N° 18 . 
     const position8 = {lat: -38.9444162, lng: -68.124398}; //Comisarìa N° 16 .
-    const position9 = {lat: -38.939508, lng: -68.1051462}; //Comisarìa N° 21
-    const position10 = {lat: -38.9309107, lng: -68.0865849}; //Comisarìa N° 3
+    const position9 = {lat: -38.939508, lng: -68.1051462}; //Comisarìa N° 21. 
+    const position10 = {lat: -38.9473107, lng: -68.0925849}; //Comisarìa N° 3 . 
     const position11 = {lat: -38.9605517, lng: -68.0588781}; //Comisarìa N° 2 . 
     const position12 = {lat: -38.952847, lng: -68.0659963}; //DIRECCIÓN UNIDADES DE DETENCIÓN . 
-    const position13 = {lat: -38.9341943, lng: -68.0881741}; //Comisaria Barrio Islas Malvinas
+    const position13 = {lat: -38.9441943, lng: -68.0831741}; //Comisaria Barrio Islas Malvinas
     const position14 = {lat: -38.9349889, lng: -68.0735232}; //COMISARIA CUARTA .
     const position15 = {lat: -38.9625956, lng: -68.049104}; //Policia de la Provincia de Neuquén . 
     const position16 = {lat: -38.9479893, lng: -68.043191}; //Departamento de Seguridad Metropolitana .
