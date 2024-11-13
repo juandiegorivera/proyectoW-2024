@@ -44,12 +44,19 @@ def toggle_drone():
 # Ruta para hacer despegar el dron
 @app.route('/api/takeoff', methods=['POST'])    # Define endpoint POST en /api/takeoff
 def takeoff():
+    global mambo, is_connected
     try:
-        mambo.safe_takeoff(5)                       # Despega con 5 segundos de preparación
-        return jsonify({"status": "success"})       # Confirma despegue exitoso
+        if not is_connected or not mambo:
+            return jsonify({"error": "El dron no está conectado"}), 400
+            
+        mambo.safe_takeoff(5)
+        return jsonify({"status": "success"})
     except Exception as e:
-        return jsonify({"error": str(e)}), 500      # Si hay error, devuelve código 500
+        return jsonify({"error": str(e)}), 500
 
 # Punto de entrada del programa
 if __name__ == '__main__':           # Solo ejecuta si es el archivo principal
     app.run(port=5000)               # Inicia servidor en puerto 5000
+
+print(f"Estado de conexión: {is_connected}")
+print(f"Objeto mambo: {mambo}")
