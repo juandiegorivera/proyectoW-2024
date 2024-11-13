@@ -21,13 +21,13 @@ export default function Mapeishon() {
     const position8 = {lat: -38.9334162, lng: -68.107032}; //Comisarìa N° 16
     const position9 = {lat: -38.929508, lng: -68.1001462}; //Comisarìa N° 21
     const position10 = {lat: -38.9309107, lng: -68.0865849}; //Comisarìa N° 3
-    const position11 = {lat: -38.9505517, lng: -68.0798781}; //Comisarìa N° 2
-    const position12 = {lat: -38.943247, lng: -68.0586963}; //DIRECCIÓN UNIDADES DE DETENCIÓN
+    const position11 = {lat: -38.9605517, lng: -68.0588781}; //Comisarìa N° 2
+    const position12 = {lat: -38.952847, lng: -68.0659963}; //DIRECCIÓN UNIDADES DE DETENCIÓN
     const position13 = {lat: -38.9341943, lng: -68.0881741}; //Comisaria Barrio Islas Malvinas
     const position14 = {lat: -38.9301889, lng: -68.0612232}; //COMISARIA CUARTA
     const position15 = {lat: -38.9625956, lng: -68.049104}; //Policia de la Provincia de Neuquén
-    const position16 = {lat: -38.9390893, lng: -68.020191}; //Departamento de Seguridad Metropolitana
-    const position17 = {lat: -38.9416525, lng: -68.0248837}; //Comisarìa N° 1
+    const position16 = {lat: -38.9479893, lng: -68.043191}; //Departamento de Seguridad Metropolitana
+    const position17 = {lat: -38.9521525, lng: -68.0538837}; //Comisarìa N° 1
     const position18 = {lat: -38.9119607 , lng: -68.080777}; // Comisarìa N° 20 (parque industrial)
 return (
         <APIProvider apiKey='AIzaSyAcOwXuYm7szYIAvaDd7mEWTWy9IZpSrYM'>
