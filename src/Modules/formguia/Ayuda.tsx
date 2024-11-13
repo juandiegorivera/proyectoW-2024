@@ -1,5 +1,9 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { FaLocationDot, FaNewspaper } from "react-icons/fa6";
+import { IoMdMegaphone } from "react-icons/io";
+import { FaPhoneAlt } from "react-icons/fa";
+
 
 export default function ErrorNotificationForm() {
   return (
@@ -23,16 +27,20 @@ export default function ErrorNotificationForm() {
           <Text style={styles.guideTitle}>Guía de la App:</Text>
           <View style={styles.guideList}>
             <View style={styles.guideItem}>
-              <Text style={styles.guideIcon}>📰</Text>
+              <FaNewspaper size={20} />
               <Text style={styles.guideText}>En el menú de novedades se podrán los casos más recientes de la ciudad.</Text>
             </View>
             <View style={styles.guideItem}>
-              <Text style={styles.guideIcon}>📢</Text>
+              <IoMdMegaphone size={20} />
               <Text style={styles.guideText}>En el menú de Realizar denuncia podrás anunciar a los administradores de la app o a las autoridades tu caso mediante un formulario.</Text>
             </View>
             <View style={styles.guideItem}>
-              <Text style={styles.guideIcon}>📞</Text>
+              <FaPhoneAlt size={20} />
               <Text style={styles.guideText}>En el menú de Líneas de ayuda se te mostrarán los números telefónicos de las líneas de emergencia de la ciudad.</Text>
+            </View>
+            <View style={styles.guideItem}>
+              <FaLocationDot size={20} />
+              <Text style={styles.guideText}>Estos puntos de interes son las comisarias que estan por toda la ciudad de Neuquén.</Text>
             </View>
           </View>
         </View>

@@ -7,10 +7,11 @@ import EmergencyNumbers from './Llamadas';
 import AppGuide from './formguia/Ayuda'
 import useCrimen from 'src/Modules/Denuncia/hooks/hookcrimen';
 import Icon from './Icon/icon';
+import DroneController from './Dron/DroneController';
 
 const Menu = () => {
   const [menuAbierto, setMenuAbierto] = useState(false);
-  const [componenteSeleccionado, setComponenteSeleccionado] = useState<'noticias' | 'Denuncia' | 'Lineas de ayuda' | 'Ayuda' | null>(null);
+  const [componenteSeleccionado, setComponenteSeleccionado] = useState<'noticias' | 'Denuncia' | 'Lineas de ayuda' | 'Ayuda' | 'dron' | null>(null);
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const {
@@ -27,7 +28,7 @@ const Menu = () => {
     setMenuAbierto(!menuAbierto);
   };
 
-  const seleccionarComponente = (componente: 'noticias' | 'Denuncia' | 'Lineas de ayuda' | 'Ayuda') => {
+  const seleccionarComponente = (componente: 'noticias' | 'Denuncia' | 'Lineas de ayuda' | 'Ayuda' | 'dron') => {
     setComponenteSeleccionado(componente);
     setMenuAbierto(false);
     Animated.timing(fadeAnim, {
@@ -76,6 +77,14 @@ const Menu = () => {
             <Icon type="question" />
             <Text style={styles.opcionMenu}>Guia</Text>
           </TouchableOpacity>
+          
+          <TouchableOpacity 
+            style={styles.menuItem} 
+            onPress={() => seleccionarComponente('dron')}
+          >
+            <Icon type="dron" />
+            <Text style={styles.opcionMenu}>Control Dron</Text>
+          </TouchableOpacity>
         </View>
       )}
 
@@ -94,6 +103,7 @@ const Menu = () => {
         )}
         {componenteSeleccionado === 'Lineas de ayuda' && <EmergencyNumbers />}
         {componenteSeleccionado === 'Ayuda' && <AppGuide />}
+        {componenteSeleccionado === 'dron' && <DroneController />}
       </Animated.View>
     </View>
   );
@@ -102,7 +112,7 @@ const Menu = () => {
 const styles = StyleSheet.create({
   contenedor: {
     flex: 1,
-    backgroundColor: 'red',
+    backgroundColor: 'green',
   },
   botonHamburguesa: {
     position: 'absolute',

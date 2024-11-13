@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { db } from '../../FirebaseConfig';
+import { db } from 'src/Modules/Firebase';
 import { collection, addDoc, doc, serverTimestamp, updateDoc } from 'firebase/firestore';
 
 const useCrimen = () => {
