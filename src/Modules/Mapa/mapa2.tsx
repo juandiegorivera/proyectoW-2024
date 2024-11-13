@@ -17,9 +17,9 @@ export default function Mapeishon() {
     const position4 = {lat: -38.9750000, lng: -68.0768976}; //Comisarìa N° 41 .
     const position5 = {lat: -38.9654653, lng: -68.1178727}; //Comisarìa N° 44 .
     const position6 = {lat: -38.9530000, lng: -68.1340562}; //Comisarìa N° 12 . 
-    const position7 = {lat: -38.9336666, lng: -68.122398}; //Comisarìa N° 18 
-    const position8 = {lat: -38.9334162, lng: -68.107032}; //Comisarìa N° 16
-    const position9 = {lat: -38.929508, lng: -68.1001462}; //Comisarìa N° 21
+    const position7 = {lat: -38.9336666, lng: -68.122398}; //Comisarìa N° 18 . 
+    const position8 = {lat: -38.9444162, lng: -68.124398}; //Comisarìa N° 16 .
+    const position9 = {lat: -38.939508, lng: -68.1051462}; //Comisarìa N° 21
     const position10 = {lat: -38.9309107, lng: -68.0865849}; //Comisarìa N° 3
     const position11 = {lat: -38.9605517, lng: -68.0588781}; //Comisarìa N° 2 . 
     const position12 = {lat: -38.952847, lng: -68.0659963}; //DIRECCIÓN UNIDADES DE DETENCIÓN . 
