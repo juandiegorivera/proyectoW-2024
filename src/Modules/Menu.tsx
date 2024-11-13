@@ -38,6 +38,15 @@ const Menu = () => {
     }).start();
   };
 
+  const cerrarComponente = () => {
+    setComponenteSeleccionado(null);
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  };
+
   return (
     <View style={styles.contenedor}>
       <TouchableOpacity onPress={toggleMenu} style={styles.botonHamburguesa}>
@@ -89,6 +98,11 @@ const Menu = () => {
       )}
 
       <Animated.View style={[styles.contenidoPrincipal, { opacity: fadeAnim }]}>
+        {componenteSeleccionado && (
+          <TouchableOpacity style={styles.botonCerrar} onPress={cerrarComponente}>
+            <Ionicons name="close-circle" size={30} color="#1B4965" />
+          </TouchableOpacity>
+        )}
         {componenteSeleccionado === 'noticias' && <News />}
         {componenteSeleccionado === 'Denuncia' && (
           <ComplaintForm
@@ -160,6 +174,20 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 100,
+  },
+  botonCerrar: {
+    position: 'absolute',
+    top: 10,
+    right: 20,
+    zIndex: 1,
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    padding: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
 });
 
