@@ -9,9 +9,9 @@ import {
   InfoWindow,      // Ventana de información que aparece cuando se interactúa con el marcador.
 } from "@vis.gl/react-google-maps";
 
-export default function Intro() {
-    const position = {lat: -38.951666666667, lng: -68.074444444444};
-    const [open, setOpen] = useState(false);
+export default function Mapeishon() {
+    const position = {lat: -38.9483376, lng: -68.0987734};
+    const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
     const position2 = {lat: -38.955964, lng: -68.0994502}; //Comisarìa N° 17
     const position3 = {lat: -38.9677843, lng: -68.126897}; //Jefatura de policia 
     const position4 = {lat: -38.9677843, lng: -68.1268976}; //Comisarìa N° 41
@@ -28,18 +28,18 @@ export default function Intro() {
     const position15 = {lat: -38.9625956, lng: -68.0844104}; //Policia de la Provincia de Neuquén
     const position16 = {lat: -38.9490893, lng: -68.050191}; //Departamento de Seguridad Metropolitana
     const position17 = {lat: -38.9516525, lng: -68.0548837}; //Comisarìa N° 1
-    const position18 = {lat: -38.9189607, lng: -68.1037169}; //Comisarìa N° 20 (parque industrial)
+    const position18 = {lat: -38.9189607 , lng: -68.1037169}; // Comisarìa N° 20 (parque industrial)
 return (
         <APIProvider apiKey='AIzaSyAcOwXuYm7szYIAvaDd7mEWTWy9IZpSrYM'>
             <div style={{height: "100vh", width: "100%"}}>
                 <Map
-                    zoom={9}
+                    zoom={13}
                     center={position}
                     mapId={'55eb5b901c013014'}
                 >
 
                     // Comisaría N° 17
-                    <AdvancedMarker position={position2} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position2} onClick={() => setSelectedMarker(2)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -47,14 +47,14 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position2} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 2 && (
+                        <InfoWindow position={position2} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Comisaría N° 17 - telefono: 299 457-8947</p>
                         </InfoWindow>
                     )}
 
                     // Jefatura de policia
-                    <AdvancedMarker position={position3} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position3} onClick={() => setSelectedMarker(3)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -62,15 +62,15 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position3} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 3 && (
+                        <InfoWindow position={position3} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Jefatura de Policía - telefono: 299 449-3900</p>
                         </InfoWindow>
                     )}
 
 
                     // Comisarìa N°41 
-                    <AdvancedMarker position={position4} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position4} onClick={() => setSelectedMarker(4)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -78,8 +78,8 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position4} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 4 && (
+                        <InfoWindow position={position4} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Comisarìa N°41  - telefono: 299 443-1931</p>
                         </InfoWindow>
                     )}
@@ -87,7 +87,7 @@ return (
 
                     // Comisarìa N°44
                     
-                    <AdvancedMarker position={position5} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position5} onClick={() => setSelectedMarker(5)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -95,8 +95,8 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position5} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 5 && (
+                        <InfoWindow position={position5} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Comisarìa N°44  - telefono: 299 444-0282</p>
                         </InfoWindow>
                     )}
@@ -104,7 +104,7 @@ return (
 
                     // Comisarìa N°12 
 
-                     <AdvancedMarker position={position6} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position6} onClick={() => setSelectedMarker(6)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -112,15 +112,15 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position6} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 6 && (
+                        <InfoWindow position={position6} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Comisarìa N°12  - telefono: 0299 445-0185</p>
                         </InfoWindow>
                     )}
 
                     // Comisarìa N°18 
 
-                    <AdvancedMarker position={position7} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position7} onClick={() => setSelectedMarker(7)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -128,8 +128,8 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position7} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 7 && (
+                        <InfoWindow position={position7} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Comisarìa N°18  - telefono: 299 446-0891</p>
                         </InfoWindow>
                     )}
@@ -137,7 +137,7 @@ return (
                     
                     // Comisarìa N° 16
 
-                    <AdvancedMarker position={position8} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position8} onClick={() => setSelectedMarker(8)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -145,15 +145,15 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position8} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 8 && (
+                        <InfoWindow position={position8} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Comisarìa N°16 - telefono: 299 446-1161</p>
                         </InfoWindow>
                     )}
 
                     // Comisarìa N° 21
 
-                    <AdvancedMarker position={position9} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position9} onClick={() => setSelectedMarker(9)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -161,15 +161,15 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position9} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 9 && (
+                        <InfoWindow position={position9} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Comisarìa N°21 - telefono: 299 446-1577</p>
                         </InfoWindow>
                     )}
 
                     // Comisarìa N°3
 
-                     <AdvancedMarker position={position10} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position10} onClick={() => setSelectedMarker(10)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -177,15 +177,15 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position10} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 10 && (
+                        <InfoWindow position={position10} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Comisarìa N°3  - telefono: 299 443-2872</p>
                         </InfoWindow>
                     )}
 
                     // Comisarìa N°2
 
-                     <AdvancedMarker position={position11} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position11} onClick={() => setSelectedMarker(11)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -193,15 +193,15 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position11} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 11 && (
+                        <InfoWindow position={position11} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Comisarìa N°2  - telefono: 299 442-4063</p>
                         </InfoWindow>
                     )}
 
                     // DIRECCIÓN UNIDADES DE DETENCIÓN
 
-                     <AdvancedMarker position={position12} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position12} onClick={() => setSelectedMarker(12)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -209,15 +209,15 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position12} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 12 && (
+                        <InfoWindow position={position12} onCloseClick={() => setSelectedMarker(null)}>
                             <p>DIRECCIÓN UNIDADES DE DETENCIÓN  - telefono: 299 442-0435</p>
                         </InfoWindow>
                     )}
 
                     // Comisaria Barrio Islas Malvinas
 
-                    <AdvancedMarker position={position13} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position13} onClick={() => setSelectedMarker(13)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -225,14 +225,14 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position13} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 13 && (
+                        <InfoWindow position={position13} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Comisaria Barrio Islas Malvinas  - telefono: 299 576-6042</p>
                         </InfoWindow>
                     )}
 
                     // Comisaria CUARTA
-                    <AdvancedMarker position={position14} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position14} onClick={() => setSelectedMarker(14)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -240,14 +240,14 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position14} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 14 && (
+                        <InfoWindow position={position14} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Comisaria Cuarta - telefono: 299 433-1449</p>
                         </InfoWindow>
                     )}
 
                     // Policia de la Provincia de Neuquén
-                    <AdvancedMarker position={position14} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position15} onClick={() => setSelectedMarker(15)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -255,15 +255,15 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position15} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 15 && (
+                        <InfoWindow position={position15} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Policia de la Provincia de Neuquén - telefono: 299 442-4100</p>
                         </InfoWindow>
                     )}
 
                     //Departamento de Seguridad Metropolitana
                     
-                    <AdvancedMarker position={position16} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position16} onClick={() => setSelectedMarker(16)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -271,15 +271,15 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position16} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 16 && (
+                        <InfoWindow position={position16} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Departamento de Seguridad Metropolitana - telefono: 299 448-5930</p>
                         </InfoWindow>
                     )}
 
                     // Comisaría N°1 
 
-                    <AdvancedMarker position={position17} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position17} onClick={() => setSelectedMarker(17)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -287,15 +287,15 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position17} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 17 && (
+                        <InfoWindow position={position17} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Comisaría N°1 - telefono: 299 442-4046</p>
                         </InfoWindow>
                     )}
 
                     // Comisaría N°20 
 
-                    <AdvancedMarker position={position18} onClick={() => setOpen(true)}> 
+                    <AdvancedMarker position={position18} onClick={() => setSelectedMarker(18)}> 
                         <Pin
                             background={"#62B6CB"}
                             borderColor={"#CAE9FF"}
@@ -303,8 +303,8 @@ return (
                         />
                     </AdvancedMarker>
 
-                    {open && (
-                        <InfoWindow position={position18} onCloseClick={() => setOpen(false)}>
+                    {selectedMarker === 18 && (
+                        <InfoWindow position={position18} onCloseClick={() => setSelectedMarker(null)}>
                             <p>Comisaría N°20 - telefono: 299 441-3305</p>
                         </InfoWindow>
                     )}
@@ -313,5 +313,3 @@ return (
         </APIProvider>
     );
 }
-
-
