@@ -8,7 +8,9 @@ app = Flask(__name__)                 # Inicializa la aplicación Flask
 CORS(app)                            # Habilita CORS en la aplicación
 
 # Dirección Bluetooth del dron
-mamboAddr = "e0:14:d0:63:3d:d0"      # Cambiar por la dirección MAC de tu dron
+mamboAddr = "e2:53:83:33:d2:5a"      # Cambiar por la dirección MAC de tu dron
+# Añadir la dirección IP si se usa WiFi
+droneIP = "192.168.99.33"             # Dirección IP predeterminada del Parrot Mambo
 
 # Variables globales para rastrear el estado
 mambo = None
@@ -21,7 +23,7 @@ def toggle_drone():
     try:
         if not is_connected:
             # Conectar el dron
-            mambo = Mambo(mamboAddr, use_wifi=False)
+            mambo = Mambo(mamboAddr, use_wifi=True)  # Cambiar use_wifi a True
             success = mambo.connect(num_retries=3)
             if success:
                 is_connected = True
