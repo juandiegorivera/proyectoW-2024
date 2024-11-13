@@ -20,7 +20,7 @@ const Mapa: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 // App.tsx
 const App: React.FC = () => {
-  return <Conexiones/>;
+  return <Mapeishon/>;
 };
 
 export default App;
