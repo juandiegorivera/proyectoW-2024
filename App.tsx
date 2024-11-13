@@ -1,4 +1,3 @@
-// App.tsx
 import React from 'react';
 import { NativeRouter, Route, Routes, useNavigate } from 'react-router-native';
 import { View, Text, TouchableOpacity, StyleSheet, Animated, Button } from 'react-native';
@@ -23,5 +22,4 @@ const App: React.FC = () => {
   return <Menu/>;
 };
 
-export default App;
-
+export default App;
