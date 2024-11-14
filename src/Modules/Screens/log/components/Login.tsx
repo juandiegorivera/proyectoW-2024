@@ -1,6 +1,9 @@
+// src/Modules/Screens/log/components/Login.tsx
+// Login.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useLoginVerification from 'src/Modules/Screens/log/hook/hookLogin';
+import Mapeishon from 'src/Modules/Mapa/mapa2';
 
 const FormLogin: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -26,7 +29,7 @@ const FormLogin: React.FC = () => {
     } else {
       const result = await verifyUser(username, password);
       if (result) {
-        navigate('/'); // Redirige al menú desplegable
+        navigate('/mapa2'); // Cambiar la redirección a mapa2.tsx
       } else {
         setError(verificationError || 'Usuario o contraseña incorrectos.');
       }

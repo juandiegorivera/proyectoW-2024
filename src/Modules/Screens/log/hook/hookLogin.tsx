@@ -1,3 +1,5 @@
+// src/Modules/Screens/log/hook/hookLogin.tsx
+// hookLogin.tsx
 import { useState } from 'react';
 import { auth } from 'src/Modules/Firebase'; // Importa la instancia de autenticación de Firebase
 import { signInWithEmailAndPassword } from 'firebase/auth'; // Importa la función para iniciar sesión

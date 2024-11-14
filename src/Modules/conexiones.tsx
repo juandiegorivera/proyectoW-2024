@@ -1,3 +1,4 @@
+// src/Modules/conexiones.tsx
 // conexiones.tsx
 import React from 'react';
 import { NativeRouter, Route, Routes, useNavigate } from 'react-router-native';
@@ -7,7 +8,7 @@ import ComplaintForm from './Denuncia/components/CrimeForm';
 import CrimenList from './Denuncia/components/CrimeList';
 import CrimenAdd from './Denuncia/components/CrimeAdd';
 import FormLogin from './Screens/log/components/Login';
-
+import Mapeishon from 'src/Modules/Mapa/mapa2';
 
 // Editar el componente Mapa para aceptar children
 const Mapa: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -21,6 +22,7 @@ const Conexiones: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<FormLogin />} />
         <Route path="/register" element={<RegisterForm />} />
+        <Route path="/mapa2" element={<Mapeishon />} />
       </Routes>
     </NativeRouter>
   );
