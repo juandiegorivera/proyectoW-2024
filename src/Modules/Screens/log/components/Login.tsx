@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useLoginVerification from 'src/Modules/Screens/log/hook/hookLogin';
 
-const Login: React.FC = () => {
+const FormLogin: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const { isVerified, error: verificationError, verifyUser } = useLoginVerification();
+
+  const handleFormLogin = () => {
     console.log('Iniciar sesión con Google');
     navigate('/'); // Redirige al menú desplegable
   };
@@ -16,13 +19,17 @@ const Login: React.FC = () => {
     console.log('Redirigir a la página de registro');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (username === '' || password === '') {
       setError('Por favor, complete todos los campos.');
     } else {
-      console.log('Iniciando sesión con nombre de usuario:', username);
-      navigate('/'); // Redirige al menú desplegable
+      const result = await verifyUser(username, password);
+      if (result) {
+        navigate('/'); // Redirige al menú desplegable
+      } else {
+        setError(verificationError || 'Usuario o contraseña incorrectos.');
+      }
     }
   };
 
@@ -59,7 +66,7 @@ const styles = {
     transition: 'background-color 0.3s',
     width: '100%', // Ancho completo
   },
-  loginButton: {
+  FormloginButton: {
     backgroundColor: '#1B4965', // Color oscuro para "Iniciar sesión"
     color: '#FFFFFF', // Texto en blanco para contraste
   },
@@ -96,7 +103,7 @@ const styles = {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Nombre de usuario"
+          placeholder="Gmail"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           style={styles.input}
@@ -129,7 +136,7 @@ const styles = {
   );
 };
 
-export default Login;
+export default FormLogin;
 
 
 

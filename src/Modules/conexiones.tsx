@@ -6,7 +6,7 @@ import RegisterForm from './Screens/Registrarse/components/Registro';
 import ComplaintForm from './Denuncia/components/CrimeForm';
 import CrimenList from './Denuncia/components/CrimeList';
 import CrimenAdd from './Denuncia/components/CrimeAdd';
-import Login from './Screens/Login';
+import FormLogin from './Screens/log/components/Login';
 
 
 // Editar el componente Mapa para aceptar children
@@ -19,7 +19,7 @@ const Conexiones: React.FC = () => {
     <NativeRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<FormLogin />} />
         <Route path="/register" element={<RegisterForm />} />
       </Routes>
     </NativeRouter>

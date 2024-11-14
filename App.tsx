@@ -5,7 +5,7 @@ import Menu from './src/Modules/Menu';
 import ComplaintForm from './src/Modules/Denuncia/components/CrimeForm';
 import CrimenList from './src/Modules/Denuncia/components/CrimeList';
 import CrimenAdd from './src/Modules/Denuncia/components/CrimeAdd';
-import Login from './src/Modules/Screens/Login';
+import Login from './src/Modules/Screens/log/components/Login';
 import RegisterForm from './src/Modules/Screens/Registrarse/components/Registro';
 import Conexiones from './src/Modules/conexiones';
 import DroneController from './src/Modules/Dron/DroneController';
@@ -20,7 +20,7 @@ const Mapa: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 // App.tsx
 const App: React.FC = () => {
-  return <Mapeishon/>;
+  return <Conexiones/>;
 };
 
 export default App;
