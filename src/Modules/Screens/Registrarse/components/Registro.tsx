@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useRegistro from 'src/Modules/Screens/Registrarse/hook/hookregistro';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
   const { registerUser, isRegistered } = useRegistro();
@@ -8,6 +9,7 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,6 +23,10 @@ const RegisterForm = () => {
       Email: email,       // Asegura que coincida con 'Email' en Firestore
       Contraseña: password // Agrega el campo 'Contraseña' si es necesario
     });
+  };
+
+  const handleBack = () => {
+    navigate('/'); 
   };
 
   return (
@@ -79,7 +85,7 @@ const RegisterForm = () => {
           {errorMessage && <p style={styles.errorText}>{errorMessage}</p>}
           {isRegistered && <p style={styles.successMessage}>Usuario registrado exitosamente</p>}
           <button type="submit" style={styles.buttonSubmit}>Registrarse</button>
-          <button type="button" style={styles.buttonBack}>Volver</button>
+          <button type="button" onClick={handleBack} style={styles.buttonBack}>Volver</button>
         </form>
       </div>
     </div>
