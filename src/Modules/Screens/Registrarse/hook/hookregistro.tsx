@@ -4,7 +4,7 @@ import { addUserToCollection } from 'src/Modules/Screens/Registrarse/hook/Usecol
 import { auth } from '../../../Firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
-const useRegistro = () => {
+const useRegistro = (navigate: (path: string) => void) => {
     const [isRegistered, setIsRegistered] = useState(false);
 
     const registerUser = async (userData: { Nombre: string; Email: string; Contraseña: string }) => {
@@ -12,6 +12,7 @@ const useRegistro = () => {
             await createUserWithEmailAndPassword(auth, userData.Email, userData.Contraseña);
             await addUserToCollection(userData);
             setIsRegistered(true);
+            navigate('/login');
         } catch (error) {
             setIsRegistered(false);
             console.error('Error al registrar usuario: ', error);

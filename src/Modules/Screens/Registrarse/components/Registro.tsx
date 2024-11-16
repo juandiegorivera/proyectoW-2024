@@ -3,13 +3,13 @@ import useRegistro from 'src/Modules/Screens/Registrarse/hook/hookregistro';
 import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
-  const { registerUser, isRegistered } = useRegistro();
+  const navigate = useNavigate();
+  const { registerUser, isRegistered } = useRegistro(navigate);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +23,13 @@ const RegisterForm = () => {
       Email: email,       // Asegura que coincida con 'Email' en Firestore
       Contraseña: password // Agrega el campo 'Contraseña' si es necesario
     });
+
+    // Esperar un momento para que el estado se actualice
+    setTimeout(() => {
+      if (isRegistered) {
+        navigate('/login');
+      }
+    }, 100); // Espera 100 ms antes de redirigir
   };
 
   const handleBack = () => {
