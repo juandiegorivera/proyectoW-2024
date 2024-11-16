@@ -1,60 +1,44 @@
 import React, { useState } from 'react';
-import { CSSProperties } from 'react';
-import { useNavigate } from 'react-router-dom';
-import useRegister from 'src/Modules/Screens/Registrarse/hook/hookregistro'; // Importa el hook
-import useFirestoreCreate from 'src/Modules/Screens/Registrarse/hook/UsecollectionRegistro'; // Importa el hook
+import useRegistro from 'src/Modules/Screens/Registrarse/hook/hookregistro';
 
-// Interfaz para los datos de registro
-interface RegisterFormData {
-  username: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  role: string;
-}
+const RegisterForm = () => {
+  const { registerUser, isRegistered } = useRegistro();
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-const RegisterForm: React.FC = () => {
-  const navigate = useNavigate();
-  const { handleFormSubmit, errors, isSubmitting, successMessage } = useRegister(); // Usa el hook
-  const [formData, setFormData] = useState<RegisterFormData>({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    role: 'Usuario',
-  });
-  const { addDocument, isAdded } = useFirestoreCreate('Usuario'); // Asegúrate de que sea "Usuario"
-
-  // Maneja los cambios de entrada
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleBack = () => {
-    navigate('/');
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setErrorMessage("Las contraseñas no coinciden");
+      return;
+    }
+    setErrorMessage('');
+    await registerUser({ 
+      Nombre: username,   // Cambia 'username' a 'Nombre'
+      Email: email,       // Asegura que coincida con 'Email' en Firestore
+      Contraseña: password // Agrega el campo 'Contraseña' si es necesario
+    });
   };
 
   return (
     <div style={styles.container}>
       <div style={styles.formContainer}>
         <h2 style={styles.title}>Regístrate</h2>
-        <form onSubmit={(e) => { e.preventDefault(); handleFormSubmit(formData, navigate); }}>
+        <form onSubmit={handleSubmit}>
           <div style={styles.inputGroup}>
             <label htmlFor="username">Nombre de Usuario:</label>
             <input
               type="text"
               id="username"
               name="username"
-              value={formData.username}
-              onChange={handleInputChange}
               required
               style={styles.input}
-              aria-invalid={errors.includes('El nombre de usuario debe tener al menos 3 caracteres.') ? 'true' : 'false'}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
-            {errors.includes('El nombre de usuario debe tener al menos 3 caracteres.') && (
-              <span style={styles.errorText}>El nombre de usuario debe tener al menos 3 caracteres.</span>
-            )}
           </div>
           <div style={styles.inputGroup}>
             <label htmlFor="email">Correo Electrónico:</label>
@@ -62,15 +46,11 @@ const RegisterForm: React.FC = () => {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
-              onChange={handleInputChange}
               required
               style={styles.input}
-              aria-invalid={errors.includes('Por favor, ingrese un correo electrónico válido.') ? 'true' : 'false'}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-            {errors.includes('Por favor, ingrese un correo electrónico válido.') && (
-              <span style={styles.errorText}>Por favor, ingrese un correo electrónico válido.</span>
-            )}
           </div>
           <div style={styles.inputGroup}>
             <label htmlFor="password">Contraseña:</label>
@@ -78,18 +58,11 @@ const RegisterForm: React.FC = () => {
               type="password"
               id="password"
               name="password"
-              value={formData.password}
-              onChange={handleInputChange}
               required
               style={styles.input}
-              aria-invalid={errors.includes('La contraseña debe tener al menos 6 caracteres.') || errors.includes('La contraseña debe contener letras mayúsculas, minúsculas y números.') ? 'true' : 'false'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            {errors.includes('La contraseña debe tener al menos 6 caracteres.') && (
-              <span style={styles.errorText}>La contraseña debe tener al menos 6 caracteres.</span>
-            )}
-            {errors.includes('La contraseña debe contener letras mayúsculas, minúsculas y números.') && (
-              <span style={styles.errorText}>La contraseña debe contener letras mayúsculas, minúsculas y números.</span>
-            )}
           </div>
           <div style={styles.inputGroup}>
             <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
@@ -97,34 +70,23 @@ const RegisterForm: React.FC = () => {
               type="password"
               id="confirmPassword"
               name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleInputChange}
               required
               style={styles.input}
-              aria-invalid={errors.includes('Las contraseñas no coinciden.') ? 'true' : 'false'}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            {errors.includes('Las contraseñas no coinciden.') && (
-              <span style={styles.errorText}>Las contraseñas no coinciden.</span>
-            )}
           </div>
-          {successMessage && <p aria-live="polite" style={styles.successMessage}>{successMessage}</p>}
-          <button 
-            type="submit" 
-            style={{ ...styles.buttonSubmit, backgroundColor: isSubmitting ? '#7BB600' : '#99D500' }}
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'Enviando...' : 'Registrarse'}
-          </button>
-          <button type="button" onClick={handleBack} style={styles.buttonBack}>
-            Volver
-          </button>
+          {errorMessage && <p style={styles.errorText}>{errorMessage}</p>}
+          {isRegistered && <p style={styles.successMessage}>Usuario registrado exitosamente</p>}
+          <button type="submit" style={styles.buttonSubmit}>Registrarse</button>
+          <button type="button" style={styles.buttonBack}>Volver</button>
         </form>
       </div>
     </div>
   );
 };
 
-const styles: { [key: string]: CSSProperties } = {
+const styles: { [key: string]: React.CSSProperties } = {
   container: {
     display: 'flex',
     justifyContent: 'center',
@@ -143,7 +105,7 @@ const styles: { [key: string]: CSSProperties } = {
     width: '100%',
   },
   title: {
-    textAlign: 'center' as React.CSSProperties['textAlign'],
+    textAlign: 'center',
     marginBottom: '20px',
     color: '#1B4965',
     fontSize: '24px',
@@ -158,14 +120,6 @@ const styles: { [key: string]: CSSProperties } = {
     borderRadius: '4px',
     border: '1px solid #ccc',
     fontSize: '16px',
-    transition: 'border-color 0.3s',
-  },
-  inputFocus: {
-    borderColor: '#99D500',
-    boxShadow: '0 0 5px rgba(153, 213, 0, 0.5)',
-  },
-  errorContainer: {
-    marginBottom: '15px',
   },
   errorText: {
     color: 'red',
@@ -181,7 +135,6 @@ const styles: { [key: string]: CSSProperties } = {
     cursor: 'pointer',
     fontSize: '16px',
     marginBottom: '10px',
-    transition: 'background-color 0.3s',
   },
   buttonBack: {
     width: '100%',
@@ -193,7 +146,6 @@ const styles: { [key: string]: CSSProperties } = {
     cursor: 'pointer',
     fontSize: '16px',
     marginTop: '10px',
-    transition: 'background-color 0.3s',
   },
   successMessage: {
     color: 'green',

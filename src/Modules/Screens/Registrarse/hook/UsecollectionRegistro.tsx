@@ -1,25 +1,13 @@
-import { useState } from 'react';
-import {collection, addDoc } from 'firebase/firestore';
-import { db } from 'src/Modules/Firebase';
+// UsecollecctionRegistro.tsx
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../../../Firebase';
 
-const useFirestoreCreate = (Usuario: string) => {
-  const [isAdded, setIsAdded] = useState(false);
-
-  const addDocument = async (newItem: { username: string; email: string; role: string; }) => {
+export const addUserToCollection = async (userData: { Nombre: string; Email: string; Contraseña: string }) => {
     try {
-      const docRef = await addDoc(collection(db, "Usuario"), {  
-        username: newItem.username,
-        email: newItem.email,
-        role: newItem.role,
-      });
-      setIsAdded(true);
+        const userCollection = collection(db, 'Usuario');
+        await addDoc(userCollection, userData);
+        console.log('Usuario añadido exitosamente');
     } catch (error) {
-      console.error('Error adding document:', error);
-      setIsAdded(false);
+        console.error('Error al añadir usuario: ', error);
     }
-  };
-
-  return { addDocument, isAdded };
 };
-
-export default useFirestoreCreate;
