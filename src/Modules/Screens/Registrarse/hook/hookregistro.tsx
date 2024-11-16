@@ -9,29 +9,27 @@ const useRegister = () => {
   const [errors, setErrors] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string>('');
-  const [formData, setFormData] = useState<{ username: string; email: string; role: string }>({
+  const [formData] = useState<{ username: string; email: string; role: string }>({
     username: '',
     email: '',
-    role: 'user',
-  }); // Define formData aquí
+    role: 'Usuario',
+  });
   const { username, email, role } = formData; 
-  const { addDocument } = useFirestoreCreate('collectionUsers', { username, email, role }); // Mueve esta línea aquí
+  const { addDocument } = useFirestoreCreate('Usuario'); // Pasar solo un argumento
 
   // Función para verificar si el usuario ya existe en Firestore
   const checkUserExists = async (uid: string): Promise<boolean> => {
-    const userDoc = await getDoc(doc(db, 'users', uid));
+    const userDoc = await getDoc(doc(db, 'Usuario', uid)); // Cambié aquí a "Usuario"
     return userDoc.exists();
   };
 
   // Envío del formulario
   const handleFormSubmit = async (formData: any, navigate: any) => {
-    const { email, username, role } = formData; // Asegúrate de que estas variables estén definidas
+    const { email, username, role, password } = formData;
     const validationErrors = validateForm(formData);
     setIsSubmitting(true);
 
     if (validationErrors.length === 0) {
-      const { password } = formData;
-
       try {
         // Crear usuario con autenticación de Firebase
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -46,7 +44,7 @@ const useRegister = () => {
         }
 
         // Guardar datos adicionales en Firestore
-        await addDocument(); // Usa la función para agregar el documento
+        await addDocument({ username, email, role });
 
         // Muestra el mensaje de éxito y redirige después de un pequeño retraso
         setSuccessMessage('Registro Exitoso');
@@ -60,6 +58,9 @@ const useRegister = () => {
           if (error.message.includes('email-already-in-use')) {
             alert('El correo electrónico ya está en uso. Por favor, intenta con otro.');
             setErrors(['El correo electrónico ya está en uso.']);
+          } else if (error.message.includes('Failed to get document because the client is offline')) {
+            alert('Error de conexión: parece que estás offline. Por favor, verifica tu conexión a Internet.');
+            setErrors(['Error de conexión: parece que estás offline.']);
           } else {
             setErrors(['Error al registrar o guardar datos: ' + error.message]);
           }
@@ -76,7 +77,7 @@ const useRegister = () => {
   // Validación del formulario
   const validateForm = (data: any): string[] => {
     const errors = [];
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expresión regular para validar el correo electrónico
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (data.password !== data.confirmPassword) {
       errors.push('Las contraseñas no coinciden.');

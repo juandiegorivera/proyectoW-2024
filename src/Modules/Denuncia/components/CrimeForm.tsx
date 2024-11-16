@@ -1,23 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import useCrimen from '../hooks/hookcrimen';
 
-export interface RoboFormProps {
-  tipoDeRobo: string;
-  setTipoDeRobo: React.Dispatch<React.SetStateAction<string>>;
-  detalles: string;
-  setDetalles: React.Dispatch<React.SetStateAction<string>>;
-  ubicacion: string;
-  setUbicacion: React.Dispatch<React.SetStateAction<string>>;
-  handleSubmit: (tipoDeRobo: string, detalles: string, ubicacion: string) => Promise<void>;
-}
-
-const RoboForm: React.FC<RoboFormProps> = ({ handleSubmit }) => {
-  const [tipoDeRobo, setTipoDeRobo] = useState("");
-  const [detalles, setDetalles] = useState("");
-  const [ubicacion, setUbicacion] = useState("");
+const RoboForm: React.FC = () => {
+  const { tipoDeRobo, setTipoDeRobo, detalles, setDetalles, ubicacion, setUbicacion, handleSubmit } = useCrimen();
 
   const onSubmit = () => {
-    handleSubmit(tipoDeRobo, detalles, ubicacion); // Asegúrate de que esto coincida con la nueva firma
+    handleSubmit(tipoDeRobo, detalles, ubicacion);
   };
 
   return (
@@ -99,4 +88,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RoboForm;
+export default RoboForm;
+
+

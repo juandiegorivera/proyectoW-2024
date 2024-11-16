@@ -1,18 +1,25 @@
-import firestore from '@react-native-firebase/firestore';
+import { useState } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from 'src/Modules/Firebase'; // Usa la instancia db desde firebase.tsx
 
-// Función para agregar un nuevo crimen a Firestore
-const addCrimen = async (tipoDeRobo: string, detalles: string, ubicacion: string) => {
-  try {
-    await firestore().collection('crimenes').add({
-      tipoDeRobo,
-      detalles,
-      ubicacion,
-    });
-    console.log('Crimen agregado!');
-  } catch (error) {
-    console.error('Error al agregar crimen: ', error);
-  }
+const addCrimen = (Usuario: string) => {
+  const [isAdded, setIsAdded] = useState(false);
+
+  const addDocument = async (newItem: { tipoDeRobo: string; detalles: string; ubicacion: string; }) => {
+    try {
+      const docRef = await addDoc(collection(db, "Crimen"), { // Se utiliza db exportado
+        tipoDeRobo: newItem.tipoDeRobo,
+        detalles: newItem.detalles,
+        ubicacion: newItem.ubicacion,
+      });
+      setIsAdded(true);
+    } catch (error) {
+      console.error('Error al agregar el crimen:', error);
+      setIsAdded(false);
+    }
+  };
+
+  return { addDocument, isAdded };
 };
 
-// Exportar la función para que pueda ser utilizada en otros componentes
 export default addCrimen;

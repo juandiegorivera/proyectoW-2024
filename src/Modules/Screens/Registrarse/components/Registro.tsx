@@ -21,9 +21,9 @@ const RegisterForm: React.FC = () => {
     email: '',
     password: '',
     confirmPassword: '',
-    role: 'user',
+    role: 'Usuario',
   });
-  const { addDocument, isAdded } = useFirestoreCreate('usuarios', formData); // Asegúrate de que esto esté en el cuerpo del componente
+  const { addDocument, isAdded } = useFirestoreCreate('Usuario'); // Asegúrate de que sea "Usuario"
 
   // Maneja los cambios de entrada
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

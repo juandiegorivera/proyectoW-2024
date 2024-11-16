@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import {collection, addDoc } from 'firebase/firestore';
+import { db } from 'src/Modules/Firebase';
 
-const useFirestoreCreate = (collectionUsers: string, newItem: { username: string; email: string; role: string; }) => {
+const useFirestoreCreate = (Usuario: string) => {
   const [isAdded, setIsAdded] = useState(false);
-  const db = getFirestore();
 
-  const addDocument = async () => {
+  const addDocument = async (newItem: { username: string; email: string; role: string; }) => {
     try {
-      const docRef = await addDoc(collection(db, collectionUsers), {
+      const docRef = await addDoc(collection(db, "Usuario"), {  
         username: newItem.username,
         email: newItem.email,
         role: newItem.role,

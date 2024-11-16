@@ -20,7 +20,12 @@ const useLoginVerification = () => {
       return true;
     } catch (err: any) {
       setIsVerified(false);
-      setError(err.message); // Establecer el mensaje de error
+      // Verificar si el error es de credenciales no válidas
+      if (err.code === 'auth/invalid-credential') {
+        setError('Usuario no registrado.'); // Mensaje específico para usuario no registrado
+      } else {
+        setError(err.message); // Establecer el mensaje de error
+      }
       return false;
     }
   };
