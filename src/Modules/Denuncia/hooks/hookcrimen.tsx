@@ -14,7 +14,6 @@ const useFirestoreCreateCrime = () => {
       setIsAdded(false);
     }
   };
-
   return { addCrime, isAdded };
 };
 
