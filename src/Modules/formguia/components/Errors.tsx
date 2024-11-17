@@ -6,18 +6,19 @@ import useFirestoreCreateError from '../hook/hookErrors';
 export default function ErrorNotificationForm() {
   const { addError, isAdded } = useFirestoreCreateError();
   const [description, setDescription] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = () => {
     if (description.trim() === '') {
-      alert('Por favor, describe el error.');
+      setMessage('Por favor, describe el error.');
       return;
     }
     addError({ description })
       .then(() => {
-        alert('Error reportado exitosamente');
+        setMessage('Error reportado exitosamente');
         setDescription('');
       })
-      .catch((error) => alert(`Error al reportar el error: ${error.message}`));
+      .catch((error) => setMessage(`Error al reportar el error: ${error.message}`));
   };
 
   return (
@@ -39,6 +40,10 @@ export default function ErrorNotificationForm() {
           </TouchableOpacity>
         </View>
         
+        {message ? (
+          <Text style={styles.message}>{message}</Text>
+        ) : null}
+
         <View style={styles.guideSection}>
           <Text style={styles.guideTitle}>Guía de la App:</Text>
           <View style={styles.guideList}>
@@ -114,5 +119,11 @@ const styles = StyleSheet.create({
   },
   guideText: {
     flex: 1,
+  },
+  message: {
+    color: 'green',
+    marginTop: 10,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

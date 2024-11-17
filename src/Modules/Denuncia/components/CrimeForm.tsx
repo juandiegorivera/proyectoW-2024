@@ -10,6 +10,9 @@ const RoboForm = () => {
 
   const handleSubmit = () => {
     addCrime({ tipo, detalles, ubicacion });
+    setTipoRobo('');
+    setDetalles('');
+    setUbicacion('');
   };
 
   return (
