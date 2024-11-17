@@ -1,3 +1,8 @@
+import { FaLocationDot, FaNewspaper } from "react-icons/fa6";
+import { IoMdMegaphone } from "react-icons/io";
+import { FaPhoneAlt } from "react-icons/fa";
+
+
 export const Novedades = [
     {
       title: "Robo de quesos cremosos en Valentina Sur",
@@ -27,6 +32,25 @@ export const Novedades = [
     { number: "106", description: "Emergencia náutica." },
     { number: "135", description: "Asistencia al suicida." },
     { number: "142", description: "Chicos y chicas extraviados." },
+  ] as const;
+
+  export const HELPS = [
+    {
+      icon: FaNewspaper,
+      description: "En el menú de novedades se podrán los casos más recientes de la ciudad.",
+    },
+    {
+      icon: IoMdMegaphone,
+      description: "En el menú de Realizar denuncia podrás anunciar a los administradores de la app o a las autoridades tu caso mediante un formulario.",
+    },
+    {
+      icon: FaPhoneAlt,
+      description: "En el menú de Líneas de ayuda se te mostrarán los números telefónicos de las líneas de emergencia de la ciudad.",
+    },
+    {
+      icon: FaLocationDot,
+      description: "Estos puntos de interes son las comisarias que estan por toda la ciudad de Neuquén.",
+    },
   ] as const;
 
 

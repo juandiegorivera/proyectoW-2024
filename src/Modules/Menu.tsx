@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import News from './Novedades/News';
 import ComplaintForm from 'src/Modules/Denuncia/components/CrimeForm';
 import EmergencyNumbers from './Llamadas';
-import AppGuide from './formguia/Ayuda'
+import AppGuide from './formguia/components/Errors'
 import useCrimen from 'src/Modules/Denuncia/hooks/hookcrimen';
 import Icon from './Icon/icon';
 import DroneController from './Dron/DroneController';

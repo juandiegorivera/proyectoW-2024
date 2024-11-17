@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { FaLocationDot, FaNewspaper } from "react-icons/fa6";
-import { IoMdMegaphone } from "react-icons/io";
-import { FaPhoneAlt } from "react-icons/fa";
-
+import { HELPS } from 'constants/index';
+import useFirestoreCreateError from '../hook/hookErrors';
 
 export default function ErrorNotificationForm() {
+  const { addError, isAdded } = useFirestoreCreateError();
+  const [description, setDescription] = useState('');
+
+  const handleSubmit = () => {
+    if (description.trim() === '') {
+      alert('Por favor, describe el error.');
+      return;
+    }
+    addError({ description })
+      .then(() => {
+        alert('Error reportado exitosamente');
+        setDescription('');
+      })
+      .catch((error) => alert(`Error al reportar el error: ${error.message}`));
+  };
+
   return (
     <View style={styles.card}>
       <View style={styles.cardHeader}>
@@ -17,8 +31,10 @@ export default function ErrorNotificationForm() {
             style={styles.input}
             placeholder="Describe el error aquí"
             placeholderTextColor="#666"
+            value={description}
+            onChangeText={setDescription}
           />
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
             <Text style={styles.buttonText}>Enviar</Text>
           </TouchableOpacity>
         </View>
@@ -26,22 +42,12 @@ export default function ErrorNotificationForm() {
         <View style={styles.guideSection}>
           <Text style={styles.guideTitle}>Guía de la App:</Text>
           <View style={styles.guideList}>
-            <View style={styles.guideItem}>
-              <FaNewspaper size={20} />
-              <Text style={styles.guideText}>En el menú de novedades se podrán los casos más recientes de la ciudad.</Text>
-            </View>
-            <View style={styles.guideItem}>
-              <IoMdMegaphone size={20} />
-              <Text style={styles.guideText}>En el menú de Realizar denuncia podrás anunciar a los administradores de la app o a las autoridades tu caso mediante un formulario.</Text>
-            </View>
-            <View style={styles.guideItem}>
-              <FaPhoneAlt size={20} />
-              <Text style={styles.guideText}>En el menú de Líneas de ayuda se te mostrarán los números telefónicos de las líneas de emergencia de la ciudad.</Text>
-            </View>
-            <View style={styles.guideItem}>
-              <FaLocationDot size={20} />
-              <Text style={styles.guideText}>Estos puntos de interes son las comisarias que estan por toda la ciudad de Neuquén.</Text>
-            </View>
+            {HELPS.map((item, index) => (
+              <View key={index} style={styles.guideItem}>
+                {React.createElement(item.icon)}
+                <Text style={styles.guideText}>{item.description}</Text>
+              </View>
+            ))}
           </View>
         </View>
       </View>
@@ -105,9 +111,6 @@ const styles = StyleSheet.create({
   guideItem: {
     flexDirection: 'row',
     gap: 8,
-  },
-  guideIcon: {
-    fontSize: 20,
   },
   guideText: {
     flex: 1,
