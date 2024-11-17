@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useLoginVerification from 'src/Modules/Screens/log/hook/hookLogin';
-import Mapeishon from 'src/Modules/Mapa/mapa2';
 
 const FormLogin: React.FC = () => {
   const [username, setUsername] = useState('');

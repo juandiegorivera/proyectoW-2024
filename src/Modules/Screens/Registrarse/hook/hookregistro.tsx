@@ -12,7 +12,11 @@ const useRegistro = (navigate: (path: string) => void) => {
             await createUserWithEmailAndPassword(auth, userData.Email, userData.Contraseña);
             await addUserToCollection(userData);
             setIsRegistered(true);
-            navigate('/login');
+            
+            setTimeout(() => {
+              alert('Serás enviado a la página de inicio de sesión.');
+              navigate('/login');
+            }, 500); // Espera 100 ms antes de redirigir
         } catch (error) {
             setIsRegistered(false);
             console.error('Error al registrar usuario: ', error);

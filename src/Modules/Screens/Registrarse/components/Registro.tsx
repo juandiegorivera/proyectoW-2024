@@ -23,13 +23,6 @@ const RegisterForm = () => {
       Email: email,       // Asegura que coincida con 'Email' en Firestore
       Contraseña: password // Agrega el campo 'Contraseña' si es necesario
     });
-
-    // Esperar un momento para que el estado se actualice
-    setTimeout(() => {
-      if (isRegistered) {
-        navigate('/login');
-      }
-    }, 100); // Espera 100 ms antes de redirigir
   };
 
   const handleBack = () => {
