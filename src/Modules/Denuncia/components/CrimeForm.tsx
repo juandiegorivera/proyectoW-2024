@@ -1,12 +1,15 @@
-import React from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
-import useCrimen from '../hooks/hookcrimen';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import useFirestoreCreateCrime from '../hooks/hookcrimen';
 
-const RoboForm: React.FC = () => {
-  const { tipoDeRobo, setTipoDeRobo, detalles, setDetalles, ubicacion, setUbicacion, handleSubmit } = useCrimen();
+const RoboForm = () => {
+  const [tipo, setTipoRobo] = useState('');
+  const [detalles, setDetalles] = useState('');
+  const [ubicacion, setUbicacion] = useState('');
+  const { addCrime, isAdded } = useFirestoreCreateCrime();
 
-  const onSubmit = () => {
-    handleSubmit(tipoDeRobo, detalles, ubicacion);
+  const handleSubmit = () => {
+    addCrime({ tipo, detalles, ubicacion });
   };
 
   return (
@@ -15,8 +18,8 @@ const RoboForm: React.FC = () => {
         <Text style={styles.label}>Tipo de Robo:</Text>
         <TextInput
           style={styles.input}
-          value={tipoDeRobo}
-          onChangeText={setTipoDeRobo}
+          value={tipo}
+          onChangeText={setTipoRobo}
         />
       </View>
       <View style={styles.inputGroup}>
@@ -35,7 +38,10 @@ const RoboForm: React.FC = () => {
           onChangeText={setUbicacion}
         />
       </View>
-      <Button title="Enviar" onPress={onSubmit} />
+      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+        <Text style={styles.buttonText}>Reportar Crimen</Text>
+      </TouchableOpacity>
+      {isAdded && <Text style={{ color: 'green' }}>Crimen reportado exitosamente</Text>}
     </View>
   );
 };
@@ -65,7 +71,7 @@ const styles = StyleSheet.create({
     color: '#000000',  // Texto negro
   },
   button: {
-    backgroundColor: '#90EE90',  // Verde claro para el botón principal
+    backgroundColor: '#62B6CB',  // Verde claro para el botón principal
     padding: 15,
     borderRadius: 8,
     alignItems: 'center',
@@ -75,6 +81,7 @@ const styles = StyleSheet.create({
     color: '#000000',  // Texto negro
     fontSize: 18,
     fontWeight: '600',
+    backgroundColor:'#62B6CB',
   },
   inputDetalles: {
     borderWidth: 1,
@@ -89,5 +96,3 @@ const styles = StyleSheet.create({
 });
 
 export default RoboForm;
-
-

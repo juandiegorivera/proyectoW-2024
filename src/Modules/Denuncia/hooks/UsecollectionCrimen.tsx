@@ -1,25 +1,13 @@
-import { useState } from 'react';
+// UsecollecctionRegistro.tsx
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from 'src/Modules/Firebase'; // Usa la instancia db desde firebase.tsx
+import { db } from 'src/Modules/Firebase';
 
-const addCrimen = (Usuario: string) => {
-  const [isAdded, setIsAdded] = useState(false);
-
-  const addDocument = async (newItem: { tipoDeRobo: string; detalles: string; ubicacion: string; }) => {
+export const addCrimenToCollection = async (crimeData: { tipo: string; detalles: string; ubicacion: string }) => {
     try {
-      const docRef = await addDoc(collection(db, "Crimen"), { // Se utiliza db exportado
-        tipoDeRobo: newItem.tipoDeRobo,
-        detalles: newItem.detalles,
-        ubicacion: newItem.ubicacion,
-      });
-      setIsAdded(true);
+        const userCollection = collection(db, 'Crimen');
+        await addDoc(userCollection, crimeData);
+        console.log('Crimen añadido exitosamente');
     } catch (error) {
-      console.error('Error al agregar el crimen:', error);
-      setIsAdded(false);
+        console.error('Error al añadir crimen: ', error);
     }
-  };
-
-  return { addDocument, isAdded };
 };
-
-export default addCrimen;

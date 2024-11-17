@@ -1,42 +1,21 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
 import { db } from 'src/Modules/Firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
-const useCrimen = () => {
-  const [tipoDeRobo, setTipoDeRobo] = useState("");
-  const [detalles, setDetalles] = useState("");
-  const [ubicacion, setUbicacion] = useState("");
+const useFirestoreCreateCrime = () => {
+  const [isAdded, setIsAdded] = useState(false);
 
-  const handleSubmit = async (tipoDeRobo: string, detalles: string, ubicacion: string) => {
-    const nuevoCrimen = {
-      tipoDeRobo,
-      detalles,
-      ubicacion,
-      created_at: serverTimestamp(),
-    };
-
+  const addCrime = async (crimeData: { tipo: string; detalles: string; ubicacion: string }) => {
     try {
-      await addDoc(collection(db, "Crimen"), nuevoCrimen);
-      alert("Crimen registrado exitosamente");
-      setTipoDeRobo("");
-      setDetalles("");
-      setUbicacion("");
+      await addDoc(collection(db, 'Crimen'), crimeData);
+      setIsAdded(true);
     } catch (error) {
-      console.error("Error al registrar el crimen: ", error);
+      console.error('Error al reportar el crimen:', error);
+      setIsAdded(false);
     }
   };
 
-  return {
-    tipoDeRobo,
-    setTipoDeRobo,
-    detalles,
-    setDetalles,
-    ubicacion,
-    setUbicacion,
-    handleSubmit,
-  };
+  return { addCrime, isAdded };
 };
 
-export default useCrimen;
-
-
+export default useFirestoreCreateCrime;
