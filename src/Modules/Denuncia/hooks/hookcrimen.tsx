@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from 'src/Modules/Firebase';
 
 const useFirestoreCreateCrime = () => {
@@ -7,7 +7,10 @@ const useFirestoreCreateCrime = () => {
 
   const addCrime = async (crimeData: { tipo: string; detalles: string; ubicacion: string }) => {
     try {
-      await addDoc(collection(db, 'Crimen'), crimeData);
+      await addDoc(collection(db, 'Crimen'), {
+        ...crimeData,
+        timestamp: serverTimestamp()
+      });
       setIsAdded(true);
     } catch (error) {
       console.error('Error al reportar el crimen:', error);
