@@ -4,24 +4,24 @@ import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
   const navigate = useNavigate();
-  const { registerUser, isRegistered } = useRegistro(navigate);
+  const { registerUser, isRegistered, errorMessage } = useRegistro(navigate); // Obtiene el mensaje de error
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessageForm, setErrorMessageForm] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setErrorMessage("Las contraseñas no coinciden");
+      setErrorMessageForm("Las contraseñas no coinciden");
       return;
     }
-    setErrorMessage('');
+    setErrorMessageForm('');
     await registerUser({ 
-      Nombre: username,   // Cambia 'username' a 'Nombre'
-      Email: email,       // Asegura que coincida con 'Email' en Firestore
-      Contraseña: password // Agrega el campo 'Contraseña' si es necesario
+      Nombre: username,
+      Email: email,
+      Contraseña: password
     });
   };
 
@@ -82,7 +82,8 @@ const RegisterForm = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
-          {errorMessage && <p style={styles.errorText}>{errorMessage}</p>}
+          {errorMessageForm && <p style={styles.errorText}>{errorMessageForm}</p>}
+          {errorMessage && <p style={styles.errorText}>{errorMessage}</p>} {/* Muestra el error en rojo */}
           {isRegistered && <p style={styles.successMessage}>Usuario registrado exitosamente</p>}
           <button type="submit" style={styles.buttonSubmit}>Registrarse</button>
           <button type="button" onClick={handleBack} style={styles.buttonBack}>Volver</button>
