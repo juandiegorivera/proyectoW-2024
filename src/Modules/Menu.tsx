@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import News from './Novedades/News';
-import ComplaintForm from 'src/Modules/Denuncia/components/CrimeForm';
+import RoboForm from 'src/Modules/Denuncia/components/CrimeForm';
 import EmergencyNumbers from './Llamadas';
 import AppGuide from './formguia/components/Errors'
 import useCrimen from 'src/Modules/Denuncia/hooks/hookcrimen';
@@ -13,16 +13,6 @@ const Menu = () => {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [componenteSeleccionado, setComponenteSeleccionado] = useState<'noticias' | 'Denuncia' | 'Lineas de ayuda' | 'Ayuda' | 'dron' | null>(null);
   const fadeAnim = useRef(new Animated.Value(0)).current;
-
-  const {
-    tipoDeRobo,
-    setTipoDeRobo,
-    detalles,
-    setDetalles,
-    ubicacion,
-    setUbicacion,
-    handleSubmit,
-  } = useCrimen();
 
   const toggleMenu = () => {
     setMenuAbierto(!menuAbierto);
@@ -104,17 +94,7 @@ const Menu = () => {
           </TouchableOpacity>
         )}
         {componenteSeleccionado === 'noticias' && <News />}
-        {componenteSeleccionado === 'Denuncia' && (
-          <ComplaintForm
-            tipoDeRobo={tipoDeRobo}
-            setTipoDeRobo={setTipoDeRobo}
-            detalles={detalles}
-            setDetalles={setDetalles}
-            ubicacion={ubicacion}
-            setUbicacion={setUbicacion}
-            handleSubmit={handleSubmit}
-          />
-        )}
+        {componenteSeleccionado === 'Denuncia' && (<RoboForm/>)}
         {componenteSeleccionado === 'Lineas de ayuda' && <EmergencyNumbers />}
         {componenteSeleccionado === 'Ayuda' && <AppGuide />}
         {componenteSeleccionado === 'dron' && <DroneController />}
